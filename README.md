@@ -582,3 +582,13 @@ export default [{
 ## 封装脚本命令
 child_process
  pnpm i child_process -D -w
+
+
+## 安装semver
+一个让版本增加的计算工具
+
+pnpm i semver -D -w
+
+## 版本自增
+npm i mversion -g
+mversion patch

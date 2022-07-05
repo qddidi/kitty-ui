@@ -8,14 +8,14 @@ import fs from 'fs'
 const files = fs.readdirSync(__dirname)
 
 const comName = files.filter((item) => {
-    return (item.indexOf('.') == -1 && item != 'node_modules'&&item != 'build')
+    return (item.indexOf('.') == -1 && item != 'node_modules' && item != 'build')
 })
 const buildConfig = comName.map(name => {
     return {
         // 生成 .d.ts 类型声明文件
         input: `./${name}/src/types.ts`,
         output: {
-            file: `../kittyui/dist/types/${name}/index.d.ts`,
+            file: `../dist/kittyui/types/${name}/index.d.ts`,
             format: 'es',
         },
         plugins: [dts()],
@@ -27,7 +27,7 @@ export default [{
     // 出口
     output: [
         {
-            file: '../../dist/kittui/index.js',
+            file: '../dist/kittyui/index.js',
             // 配置打包模块化的方式 es:ESM  cjs:CommonJS
             format: 'es'
         }

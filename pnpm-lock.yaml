@@ -4,7 +4,6 @@ importers:
 
   .:
     specifiers:
-      '@kitty-ui/utils': workspace:^1.0.0
       '@vue/compiler-sfc': ^3.2.37
       axios: ^0.27.2
       child_process: ^1.0.2
@@ -16,10 +15,10 @@ importers:
       rollup-plugin-typescript: ^1.0.1
       rollup-plugin-typescript2: ^0.32.1
       rollup-plugin-vue: ^6.0.0
+      semver: ^7.3.7
       typescript: ^4.7.4
       vue: ^3.2.36
     dependencies:
-      '@kitty-ui/utils': link:packages/utils
       axios: 0.27.2
     devDependencies:
       '@vue/compiler-sfc': 3.2.37
@@ -32,6 +31,7 @@ importers:
       rollup-plugin-typescript: 1.0.1_typescript@4.7.4
       rollup-plugin-typescript2: 0.32.1_okefoyb4o5sittgqayreuhurei
       rollup-plugin-vue: 6.0.0_@vue+compiler-sfc@3.2.37
+      semver: 7.3.7
       typescript: 4.7.4
       vue: 3.2.37
 
@@ -55,6 +55,9 @@ importers:
       '@types/node': ^18.0.1
     devDependencies:
       '@types/node': 18.0.1
+
+  packages/kittyui:
+    specifiers: {}
 
   packages/utils:
     specifiers:
@@ -1127,6 +1130,13 @@ packages:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: false
 
+  /lru-cache/6.0.0:
+    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
+    engines: {node: '>=10'}
+    dependencies:
+      yallist: 4.0.0
+    dev: true
+
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
@@ -1804,6 +1814,14 @@ packages:
     hasBin: true
     dev: true
 
+  /semver/7.3.7:
+    resolution: {integrity: sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
+    dev: true
+
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -1955,6 +1973,10 @@ packages:
       '@vue/runtime-dom': 3.2.37
       '@vue/server-renderer': 3.2.37_vue@3.2.37
       '@vue/shared': 3.2.37
+    dev: true
+
+  /yallist/4.0.0:
+    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
 
   /yaml/1.10.2:

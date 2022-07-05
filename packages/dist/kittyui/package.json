@@ -1,6 +1,6 @@
 {
-  "name": "@kitty-ui/components",
-  "version": "1.0.5",
+  "name": "kitty-ui",
+  "version": "1.0.4",
   "main": "index.ts",
   "scripts": {
     "build": "node build/index.js"
