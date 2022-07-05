@@ -1,14 +1,14 @@
 {
   "name": "@kitty-ui/utils",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "node build/build.js"
+    "build": "node build/index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@kitty-ui/components": "^1.0.0"
   }

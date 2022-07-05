@@ -2,7 +2,11 @@ const exec = require('child_process').exec
 const resolve = require('path').resolve
 const rmdir = require(resolve(__dirname, '../../components/build/utils/rmdir'))
 const fs = require('fs')
-
+//没有dist文件夹则创建
+if (!fs.existsSync(resolve(__dirname, '../../dist'))) {
+    fs.mkdirSync(resolve(__dirname, '../../dist'))
+    console.log('success','dist文件创建成功')
+}
 //清除原有utils下的文件
 rmdir(resolve(__dirname, '../../dist/utils'))
 

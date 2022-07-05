@@ -7,6 +7,7 @@
 * 如何使用vite搭建一个基本的Vue3脚手架项目
 * 如何开发调试一个自己的UI组件库
 * 如何打包并发布自己的UI组件库 
+* 如何开发一个简单的发布脚本
 
 作为一个前端拥有一个属于自己的UI组件库是一件非常酷的事情。它不仅能让我们对组件的原理有更深的理解，还能在找工作的时候为自己增色不少。试问有哪个前端不想拥有一套属于自己的UI组件库呢？
 
@@ -15,7 +16,7 @@
 
 好了~ 接下来让我们先看下什么是menorepo环境以及它是如何搭建的吧
 
-# menorepo环境
+## menorepo环境
 
 就是指在一个大的项目仓库中，管理多个模块/包（package），这种类型的项目大都在项目根目录下有一个packages文件夹，分多个项目管理。大概结构如下：
 
@@ -40,19 +41,19 @@
 
 ## 使用pnpm
 
-* 安装
+### 安装
 
 ```
 npm install pnpm -g
 ```
 
-* 初始化package.json
+### 初始化package.json
 
 ```
 pnpm init
 ```
 
-* 新建配置文件 .npmrc
+### 新建配置文件 .npmrc
 
 ```
 shamefully-hoist = true
@@ -62,17 +63,19 @@ shamefully-hoist = true
 
 如果某些工具仅在根目录的node_modules时才有效，可以将其设置为true来提升那些不在根目录的node_modules，就是将你安装的依赖包的依赖包的依赖包的...都放到同一级别（扁平化）。说白了就是不设置为true有些包可能会出问题!
 
-## 安装vue3 ts less
-
-我们开发的是vue3组件嘛， 所以vue3和ts是必不可少的（当然如果你想要js开发也是可以的，甚至可以省略到很多配置和写法。但是作为我们的第一个组件库我们得规范起来！);less为了我们写样式方便，已经它的命名空间（这个暂时这里没用到，后面有时间再补上~
+## 安装对应依赖
 
 ```
 pnpm i vue@next typescript less -D
 ```
 
+我们开发的是vue3组件嘛， 所以vue3和ts是必不可少的（当然如果你想要js开发也是可以的，甚至可以省略到很多配置和写法。但是作为我们的第一个组件库我们得规范起来！);less为了我们写样式方便，以及使用它的命名空间（这个暂时这里没用到，后面有时间再补上~
+
+
+
 * 配置tsconfit.json
 
-这里的配置就不细说了，可以自行搜索都是代表什么意思。如果你在跟着开发的话，你就先直接CV大法吧
+这里的配置就不细说了，可以自行搜索都是代表什么意思。或者你可以先直接复制
 
 ```
 npx tsc --init
@@ -116,7 +119,7 @@ examples文件夹就是接下来我们要**使用vite搭建一个基本的Vue3�
 
 ## 手动搭建一个基于vite的vue3项目
 
-* 初始化仓库
+### 初始化仓库
 
 进入examples文件夹，执行
 
@@ -124,15 +127,17 @@ examples文件夹就是接下来我们要**使用vite搭建一个基本的Vue3�
 pnpm init
 ```
 
-* 安装vite和@vitejs/plugin-vue
+### 安装vite和@vitejs/plugin-vue
 
 @vitejs/plugin-vue用来支持.vue文件的转译
 
 ```
-pnpm install vite @vitejs/plugin-vue -D
+pnpm install vite @vitejs/plugin-vue -D -w
 ```
 
-* 配置vite.config.ts
+-w 代表安装在根目录下
+
+### 配置vite.config.ts
 
 新建vite.config.ts
 
@@ -146,7 +151,7 @@ export default defineConfig({
 
 ```
 
-* 新建html文件
+### 新建html文件
 
 @vitejs/plugin-vue 会默认加载examples下的index.html
 
@@ -171,7 +176,7 @@ export default defineConfig({
 <b>注意：</b>
 vite 是基于esmodule的 所以type="module"
 
-* 新建app.vue模板
+### 新建app.vue模板
 
 ```
 <template>
@@ -181,7 +186,7 @@ vite 是基于esmodule的 所以type="module"
 </template>
 ```
 
-* 新建main.ts
+### 新建main.ts
 
 ```
 import {createApp} from 'vue'
@@ -207,7 +212,7 @@ declare module '*.vue' {
 }
 ```
 
-* 配置脚本启动项目
+### 配置脚本启动项目
 
 最后在package.json文件中配置scripts脚本
 
@@ -219,12 +224,14 @@ declare module '*.vue' {
 ...
 ```
 
-然后终端输入我们熟悉的命令：npm run dev
+然后终端输入我们熟悉的命令：pnpm run dev
 
 vite启动默认端口为3000；在浏览器中打开localhost:3000 就会看我们的“启动测试”页面。
 
 
-## 实现工具包的本地调试
+## 本地调试
+
+### 新建包文件
 
 本节可能和目前组件的开发关联不大，但是未来组件需要引入一些工具方法的时候会用到
 
@@ -296,7 +303,7 @@ console.log(result)
 
 由于组件库是基于ts的，所以需要安装ts-node来执行ts文件便于测试组件之间的引入情况
 
-## 包之间本地调试
+### 包之间本地调试
 
 进入components文件夹执行
 
@@ -331,7 +338,7 @@ pnpm install @kitty-ui/utils
 
 ## 试着开发一个button组件
 
-在components文件夹下新建button/src,以及button下的index.ts;此时components文件目录如下
+在components文件夹下新建button组件目录和icon组件目录(新建icon为了便于调试);此时components文件目录如下
 
 ```
 -- components
@@ -340,8 +347,14 @@ pnpm install @kitty-ui/utils
     -- index.ts
   -- index.ts
   -- package.json
+  -- Icon
+    -- src
+    -- index.ts
+  -- index.ts
+  -- package.json
 
 ```
+
 
 让我们先测试一下我们的button组件能否在我们搭建的examples下的vue3项目本引用~
 
@@ -361,7 +374,7 @@ import Button from './src/button.vue'
 export default Button
 ```
 
-因为我们开发组件库的时候不可能只开发个button吧（当然除非你把这个button做的天花乱坠），所以我们需要一个components/index.ts将我们开发的组件一个个的集中导出，当然这里现在只有一个button哈
+因为我们开发组件库的时候不可能只开发个button吧（当然除非你把这个button做的天花乱坠），所以我们需要一个components/index.ts将我们开发的组件一个个的集中导出
 
 ```
 import Button from './button'
@@ -441,40 +454,42 @@ import type 表示只导入类型；ExtractPropTypes是vue3中内置的类型声
 
 
 
-# rollup
+到这里组件开发的基本配置已经完成，最后我们对我们的组件库以及工具库进行打包，打包之前如果要发公共包的话记得将我们的各个包的协议改为MIT开源协议
+```
+...
+"license": "MIT",
+...
+```
+## rollup打包
 
-根目录安装
+
+我们组件库主要是为了打包成ems模式；这也是我们使用rollup进行打包的原因
+
+* 安装rollup
+
+```
 pnpm i rollup -D -w
+```
 
-# rollup-plugin-vue + @vue/compiler-sfc
+* 安装打包vue3相关插件rollup-plugin-vue和@vue/compiler-sfc
+
+在项目任意目录安装（因为-w的存在，它都会安装到主目录
 
 ```
 pnpm i @vue/compiler-sfc rollup-plugin-vue -D -w
 ```
 
-# rollup-plugin-postcss rollup-plugin-typescript2
-
-全局安装less
-
-
-下新建packages/kittyui并且执行：pnpm init 
+* 安装打包typescript和样式处理相关插件rollup-plugin-postcss和rollup-plugin-typescript2
 
 ```
-{
-  "name": "kitty-ui",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./dist/index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-}
-
+pnpm i rollup-plugin-postcss rollup-plugin-typescript2 -D -w
 ```
-新建packages/kittyui/dist文件夹
-这个dist文件存放我们打包后的文件，也就是后面给用户使用的包。所以将入口main改为./dist/index.js
 
-回到components/rollup.config.ts中将打包入口指向我们的kittyui包：
+### rollup基础配置
+
+在components和utils下分别新建**rollup.config.ts**
+
+**components/rollup.config.ts**
 
 ```
 import vue from 'rollup-plugin-vue'
@@ -503,28 +518,73 @@ export default {
 
 ```
 
-## 按需引入
+**utils/rollup.config.ts**
+
+```
+import typescript from 'rollup-plugin-typescript2'
+export default {
+    // 入口
+    input: './index.ts',
+    // 出口
+    output: [
+        {
+            file: '../dist/utils/index.js',
+            // 配置打包模块化的方式 es:ESM  cjs:CommonJS
+            format: 'es'
+        }
+    ],
+    plugins: [
+        typescript()
+    ]
+}
+```
+
+### 配置build命令
+
+分别在components和utils下的package.json中加入build命令
+
+如components/package.json
+
+```
+{
+  "name": "@kitty-ui/components",
+  "version": "1.0.5",
+  "main": "index.ts",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
+
+```
+
+这时就可以在components下执行：**pnpm run build** 进行打包了；最终生成的文件会输出到**packages/dist**目录下；最终我们要发布的包也是这个dist下面的包；所以我们需要将每个包下的package.json复制到dist对应目录下，这个将在下面写一些简单的node脚本进行处理，而不需我们手动操作
+
+### 按需引入
 
 因为rollup打包出来的产物本身就支持了ES模块的导出。所以我们的组件库本身就已经实现了按需引入了，如引入一个button:
+
 ```
 import { Button } from 'kitty-ui'
 ```
 
-到现在这个包现在已经可以发布到npm上使用了，但是使用的时候需要支持esm；因为我们是Vue3组件库，所以基本常用的脚手架都已经支持esm了
+到现在这个包现在已经可以发布到npm上使用了
 
-
-## 打包组件库并且生成声明文件
+### 打包组件库并且生成声明文件
 
 生成声明文件是为了保证别人在引入我们的组件库时候获得对应的代码补全、接口提示等功能。所以在我们组件库中生成声明文件是很有必要的。这里我使用了rollup-plugin-dts这个库来帮我们将组件库中的types.ts生成声明文件并打包到types对应的组件目录下
 
 首先安装
+
 ```
 pnpm i rollup-plugin-dts -D -w
 
 ```
-rollup-plugin-dts
 
-因为要输出.d.ts文件所以需要将rollup配置改成数组形式：
+因为要输出.d.ts文件所以需要将rollup配置改成数组形式打包多文件：(components/rollup.config.ts如下，其余代码有对应注释)
 
 
 ```
@@ -535,33 +595,36 @@ import dts from 'rollup-plugin-dts'
 //import { dirname, resolve } from 'path'
 import fs from 'fs'
 
-//获取根目录下的子目录
-
+//获取根目录下文件夹
 const files = fs.readdirSync(__dirname)
 
-//剔除不需要的文件
+//过滤掉除了组件的文件
+
 const comName = files.filter((item) => {
-    return (item.indexOf('.') == -1 && item != 'node_modules')
+    return (item.indexOf('.') == -1 && item != 'node_modules' && item != 'build')
 })
-//遍历生成对应目录下的打包配置
+
+//遍历rollup配置文件,以便于将每个配置文件打包到对应组件目录下
 const buildConfig = comName.map(name => {
     return {
         // 生成 .d.ts 类型声明文件
         input: `./${name}/src/types.ts`,
         output: {
-            file: `../kittyui/dist/types/${name}/index.d.ts`,
+            file: `../dist/kittyui/types/${name}/index.d.ts`,
             format: 'es',
         },
         plugins: [dts()],
     }
 });
+
+//注入配置
 export default [{
     // 入口
     input: './index.ts',
     // 出口
     output: [
         {
-            file: '../kittyui/dist/index.js',
+            file: '../dist/kittyui/index.js',
             // 配置打包模块化的方式 es:ESM  cjs:CommonJS
             format: 'es'
         }
@@ -576,19 +639,295 @@ export default [{
 ...buildConfig
 ]
 
+```
+
+到这里其实我们已经完成了组件的开发与打包，并且已经可以发布到npm上了。但是我们还需要写一些脚本文件来帮助我们更好的操作我们的项目
+
+## 增加脚本文件处理
+
+由于脚本文件只是用来帮助我们进行开发和打包的并不会发布到npm，所以这里就使用js进行开发
+
+### 组件库脚本
+
+来到components文件夹下新建build文件以及utils,文件目录如下
+
+```
+-- build
+  --utils
+  index.js
 
 ```
 
-## 封装脚本命令
-child_process
- pnpm i child_process -D -w
+我们将components/package.json中的build命令改为**node build/index.js**
+
+```
+...
+   "scripts": {
+    "build": "node build/index.js"
+    },
+...
+```
+
+这时候执行命令的时候就会执行build/index.js了
+
+安装child_process
+
+```
+pnpm i child_process -D -w
+```
+
+使用child_process中的exec可以让我们执行在终端输入的命令；如你想执行：**pnpm run build** 命令：
+
+```
+exec('pnpm run build', function (error) {
+    if (error) {
+        console.error('error: ' + error);
+        return;
+    }
+    console.log('success:', '打包成功！')
+});
+```
+
+我们这个脚本最终要实现的是什么的？
+
+* 清除包内原有文件
+* 复制一份package.json到对应目录下(这里还将package的名字改为了kitty-ui)
+* 执行rollup打包的命令
+
+对应基本逻辑如下：
+
+**build/utils/rmdir**
+
+```
+let fs = require('fs')
+const path = require('path')
+module.exports = function _deleteDir(url) {
+    var files = [];
+    if (fs.existsSync(url)) {
+        //判断给定的路径是否存在
+        files = fs.readdirSync(url); //返回文件和子目录的数组
+        files.forEach(function (file, index) {
+            var curPath = path.join(url, file);
+            if (fs.statSync(curPath).isDirectory()) {
+                //同步读取文件夹文件，如果是文件夹，则函数回调
+                _deleteDir(curPath);
+            } else {
+                fs.unlinkSync(curPath); //是指定文件，则删除
+            }
+        });
+        //fs.rmdirSync(url); //清除文件夹
+        console.log('success','清除目录', url);
+    } else {
+        //没有目录，新建目录
+        
+        fs.mkdirSync(url)
+        console.log('success','新建目录', url);
+        
+    }
+}
 
 
-## 安装semver
-一个让版本增加的计算工具
+```
 
-pnpm i semver -D -w
+**build/index.js**
 
-## 版本自增
+```
+const exec = require('child_process').exec
+const resolve = require('path').resolve
+const rmdir = require('./utils/rmdir')
+const fs = require('fs')
+
+//清除原有kittyui下的文件
+rmdir(resolve(__dirname, '../../dist/kittyui'))
+
+//将组件components的package.json复制到需要发布的文件下
+fs.readFile(resolve(__dirname, '../package.json'), 'utf8', (err, data) => {
+    if (err) {
+        console.log(err)
+        return
+    }
+    let tempkg = JSON.parse(data)
+    tempkg.name = 'kitty-ui'
+    let writepkg = JSON.stringify(tempkg)
+    fs.writeFileSync(resolve(__dirname, '../../dist/kittyui/package.json'), writepkg);
+    console.log('success:', 'package.json复制成功')
+})
+
+exec('rollup -c', function (error) {
+    if (error) {
+        console.error('error: ' + error);
+        return;
+    }
+    console.log('success:', 'kitty-ui打包成功')
+});
+
+```
+
+在components下执行 **pnpm run build** 此时的控制台会输出
+
+第一次执行(没有dist文件夹)
+
+```
+> @kitty-ui/components@1.0.5 build
+> node build/index.js
+
+success dist文件创建成功
+success 新建目录 D:\kitty-ui\packages\dist\kittyui
+success: package.json复制成功
+success: kitty-ui打包成功
+
+```
+
+第二次执行(存在dist文件夹，且文件下有目录)
+
+```
+> @kitty-ui/components@1.0.5 build
+> node build/index.js
+
+success 清除目录 D:\kitty-ui\packages\dist\kittyui\types\button
+success 清除目录 D:\kitty-ui\packages\dist\kittyui\types\Icon
+success 清除目录 D:\kitty-ui\packages\dist\kittyui\types
+success 清除目录 D:\kitty-ui\packages\dist\kittyui
+success: package.json复制成功
+success: kitty-ui打包成功
+```
+
+组件库的脚本已经完成，同样的utils库与其类似只是输出的目录不同
+
+修改package.json的scripts
+
+```
+...
+"scripts": {
+    "build": "node build/index.js"
+  }
+...
+```
+
+@kitty-ui/utils包下新建build/index.js
+
+```
+const exec = require('child_process').exec
+const resolve = require('path').resolve
+const rmdir = require(resolve(__dirname, '../../components/build/utils/rmdir'))
+const fs = require('fs')
+
+//清除原有utils下的文件
+rmdir(resolve(__dirname, '../../dist/utils'))
+
+//将组件utils的package.json复制到需要发布的文件下
+fs.readFile(resolve(__dirname, '../package.json'), 'utf8', (err, data) => {
+    if (err) {
+        console.log(err)
+        return
+    }
+    fs.writeFileSync(resolve(__dirname, '../../dist/utils/package.json'), data);
+    console.log('package.json复制成功')
+})
+
+exec('rollup -c', function (error) {
+    if (error) {
+        console.error('error: ' + error);
+        return;
+    }
+});
+```
+
+此时同样的可以在@kitty-ui/utils包下指向打包命令了
+
+
+
+
+### 打包管理的所有包并实现版本自增
+
+如果我们每次要发布到npm上如果不修改版本的话是会出错的，但是我们又不想每次都手动修改版本号怎么办呢？
+
+我们可以借助**mversion**这个包来进行版本号自增
+
+首先全局安装它
+
+```
 npm i mversion -g
-mversion patch
+```
+
+在对应包下执行 **mversion patch**你就会发现这个包的版本号patch(版本号第三个数) +1 了，同样的**mversion major**和**mversion minor**分别对应版本号的第一和第二位增加
+
+
+所以我们将它应用在我们全局的脚本下面，在根目录下新建script/build.js
+
+```
+const exec = require('child_process').exec
+//打包@kitty-ui/components包
+exec('cd packages/components && pnpm run build && mversion patch', function (error) {
+    if (error) {
+        console.error('error: ' + error);
+        return;
+    }
+
+    console.log('success:','打包完成kitty-ui...')
+   
+
+});
+
+ //打包@kitty-ui/utils包
+ exec('cd packages/utils && pnpm run build && mversion patch', function (error) {
+    if (error) {
+        console.error('error: ' + error);
+        return;
+    }
+
+    console.log('success','打包完成@components/utils...')
+
+});
+
+```
+
+逻辑很简单，就是进入每个包下执行build操作并且让其版本自增。
+
+直接在根目录执行: pnpm run build 你就会发现这两个包都被打包并且版本号的patch都+1了
+
+
+## 开始发布
+
+做了那么多终于到发布的阶段了；其实npm发包是很容易的，就拿我们的组件库kitty-ui举例吧
+
+发布之前记得到[npm](https://www.npmjs.com/)官网注册个账户,如果你要发布@xx/xx这种包的话需要在npm新建个组织组织组织名就是@后面的，比如我建的组织就是kitty-ui,注册完之后你就可以发布了
+
+
+
+进入到packages/dist/kittyui执行
+
+```
+npm publish --access public
+```
+
+输入你的账户和密码（记得输入密码的时候是不显示的，不要以为卡了）正常情况下应该是发布成功了
+
+**注意**
+
+发布的时候要将npm的源切换到npm的官方地址(https://registry.npmjs.org/); 如果你使用了其它镜像源的话
+
+
+## 直接使用
+
+如果你不想一步步的搭建，想直接使用现成的话，你可以直接把项目clone下来-> [kittyui](https://gitee.com/geeksdidi/kittyui),然后你只需要以下几步便可将其完成
+
+### 安装依赖
+
+* 安装pnpm npm i pnpm -g
+* 安装mversion npm i mversion -g
+* 安装所有依赖 pnpm install
+
+### 打包命令
+
+* 打包所有 
+
+根目录执行 pnpm run build
+
+* 分别打包
+
+分别进入组件库的包(packages/components)和utils(packages/utils)包分别执行 pnpm run build
+
+* 本地测试
+
+进入examples文件夹执行 pnpm run dev 启动vue3项目

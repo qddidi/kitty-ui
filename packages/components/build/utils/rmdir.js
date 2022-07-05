@@ -15,9 +15,12 @@ module.exports = function _deleteDir(url) {
             }
         });
         //fs.rmdirSync(url); //清除文件夹
-        console.log('清除目录成功', url);
+        console.log('success','清除目录', url);
     } else {
+        //没有目录，新建目录
+        
         fs.mkdirSync(url)
-        console.log('目录不存在,新建文件夹');
+        console.log('success','新建目录', url);
+        
     }
 }

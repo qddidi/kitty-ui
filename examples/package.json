@@ -9,13 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
-    "vite": "^2.9.12"
-  },
   "dependencies": {
-    "@element-plus/hooks": "^0.0.5",
-    "@kitty-ui/components": "workspace:^1.0.0",
-    "element-plus": "^2.2.8"
+    "@kitty-ui/components": "workspace:^1.0.0"
   }
 }

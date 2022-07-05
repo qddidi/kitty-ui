@@ -2,8 +2,11 @@ const exec = require('child_process').exec
 const resolve = require('path').resolve
 const rmdir = require('./utils/rmdir')
 const fs = require('fs')
-const semver = require('semver')
-
+//没有dist文件夹则创建
+if (!fs.existsSync(resolve(__dirname, '../../dist'))) {
+    fs.mkdirSync(resolve(__dirname, '../../dist'))
+    console.log('success','dist文件创建成功')
+}
 //清除原有kittyui下的文件
 rmdir(resolve(__dirname, '../../dist/kittyui'))
 
