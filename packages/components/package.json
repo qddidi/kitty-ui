@@ -1,13 +1,16 @@
 {
-  "name": "@kitty-ui/components",
-  "version": "1.0.13",
-  "main": "index.ts",
+  "name": "kitty-ui",
+  "version": "1.0.15",
+  "main": "es/index.js",
   "scripts": {
-    "build": "node build/index.js"
+    "build": "vite build"
   },
+  "files":[
+    "es"
+  ],
   "keywords": [],
   "author": "",
   "license": "MIT",
   "description": "",
-  "typings": "./index.d.ts"
+  "typings": "./es/index.d.ts"
 }

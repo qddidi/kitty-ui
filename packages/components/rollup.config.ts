@@ -24,7 +24,7 @@ export default [{
 },
 {
     // 生成 根目录类型声明文件
-    input: `./index.d.ts`,
+    input: `./index.ts`,
     output: {
         file: `../dist/kittyui/index.d.ts`,
         format: 'es',
