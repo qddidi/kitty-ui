@@ -1,11 +1,11 @@
 {
   "name": "kitty-ui",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "main": "es/index.js",
   "scripts": {
     "build": "vite build"
   },
-  "files":[
+  "files": [
     "es"
   ],
   "keywords": [],
