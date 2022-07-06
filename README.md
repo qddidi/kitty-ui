@@ -267,7 +267,7 @@ export const testfun = (a:number,b:number):number=>{
 }
 ```
 
-* components包
+* 组件库包(这里命名为kitty-ui)
 
 components是我们用来存放各种UI组件的包
 
@@ -275,7 +275,7 @@ components是我们用来存放各种UI组件的包
 
 ```
 {
-  "name": "@kitty-ui/components",
+  "name": "kitty-ui",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -289,7 +289,7 @@ components是我们用来存放各种UI组件的包
 
 ```
 
-同时改名为@kitty-ui/components；新建index.ts入口文件并引入utils包
+新建index.ts入口文件并引入utils包
 
 ```
 import {testfun} from '@kitty-ui/utils'
@@ -315,7 +315,7 @@ pnpm install @kitty-ui/utils
 
 ```
 {
-  "name": "@kitty-ui/components",
+  "name": "kitty-ui",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -338,27 +338,22 @@ pnpm install @kitty-ui/utils
 
 ## 试着开发一个button组件
 
-在components文件夹下新建button组件目录和icon组件目录(新建icon为了便于调试);此时components文件目录如下
+在components文件夹下新建src,同时在src下新建button组件目录和icon组件目录(新建icon为了便于调试);此时components文件目录如下
 
 ```
 -- components
-  -- button
-    -- src
+  -- src
+    -- button
+    -- icon
     -- index.ts
-  -- index.ts
-  -- package.json
-  -- Icon
-    -- src
-    -- index.ts
-  -- index.ts
-  -- package.json
+-- package.json
 
 ```
 
 
 让我们先测试一下我们的button组件能否在我们搭建的examples下的vue3项目本引用~
 
-首先在button/src下新建一个简单的button.vue
+首先在button下新建一个简单的button.vue
 
 ```
 <template>
@@ -374,7 +369,7 @@ import Button from './src/button.vue'
 export default Button
 ```
 
-因为我们开发组件库的时候不可能只开发个button吧（当然除非你把这个button做的天花乱坠），所以我们需要一个components/index.ts将我们开发的组件一个个的集中导出
+因为我们开发组件库的时候不可能只有button，所以我们需要一个components/index.ts将我们开发的组件一个个的集中导出
 
 ```
 import Button from './button'
@@ -391,12 +386,12 @@ export {
 
 上面已经说过执行在workspace执行 pnpm i xxx的时候pnpm会自动创建个软链接直接指向我们的xxx包。
 
-所以这里我们直接在examples执行：pnpm i @kitty-ui/components
+所以这里我们直接在examples执行：pnpm i kitty-ui
 
 此时你就会发现packages.json的依赖多了个 
 
 ```
-"@kitty-ui/components": "workspace:^1.0.0"
+"kitty-ui": "workspace:^1.0.0"
 ```
 
 这时候我们就能直接在我们的测试项目下引入我们本地的components组件库了，启动我们的测试项目，来到我们的 **examples/app.vue** 直接引入Button
@@ -408,7 +403,7 @@ export {
     </div>
 </template>
 <script lang="ts" setup>
-import { Button } from '@kitty-ui/components'
+import { Button } from 'kitty-ui'
 </script>
 ```
 
@@ -418,13 +413,15 @@ import { Button } from '@kitty-ui/components'
 
 好了万事具...(其实还差个打包，这个后面再说~)；接下来的工作就是专注于组件的开发了；让我们回到我们的button组件目录下（测试页面不用关，此时我们已经可以边开发!边调试!边看效果了！）
 
-因为我们的button组件是需要接受很多属性的，如type、size等等，所以我们要新建个types.ts文件来规范这些属性
+因为我们的button组件是需要接收很多属性的，如type、size等等，所以我们要新建个types.ts文件来规范这些属性
 
 在button/src下新建types.ts
 
 ```
 
-import {ExtractPropTypes} from 'vue'
+import { ExtractPropTypes } from 'vue'
+
+
 export type ButtonType =
   | 'default'
   | 'primary'
@@ -436,16 +433,19 @@ export type ButtonSize = 'large' | 'normal' | 'small' | 'mini';
 
 
 type buttonProps = {
-  type:ButtonType,
-  size:ButtonSize
+  type: ButtonType,
+  size: ButtonSize
 }
 
 export type ButtonProps = ExtractPropTypes<buttonProps>
 
+
+
+
 ```
 **TIPS**
 
-import type 表示只导入类型；ExtractPropTypes是vue3中内置的类型声明,它的作用是接收一个类型，然后把对应的vue3所接收的props类型提供出来
+import type 表示只导入类型；ExtractPropTypes是vue3中内置的类型声明,它的作用是接收一个类型，然后把对应的vue3所接收的props类型提供出来，后面有需要可以直接使用
 
 
 
@@ -470,53 +470,7 @@ vite-plugin-libcss
 
 pnpm i vite-plugin-libcss -D -w
 
-### 打包管理的所有包并实现版本自增
 
-如果我们每次要发布到npm上如果不修改版本的话是会出错的，但是我们又不想每次都手动修改版本号怎么办呢？
-
-我们可以借助**mversion**这个包来进行版本号自增
-
-首先全局安装它
-
-```
-npm i mversion -g
-```
-
-在对应包下执行 **mversion patch**你就会发现这个包的版本号patch(版本号第三个数) +1 了，同样的**mversion major**和**mversion minor**分别对应版本号的第一和第二位增加
-
-
-所以我们将它应用在我们全局的脚本下面，在根目录下新建script/build.js
-
-```
-const exec = require('child_process').exec
-//打包@kitty-ui/components包
-exec('cd packages/components && pnpm run build && mversion patch', function (error) {
-    if (error) {
-        console.error('error: ' + error);
-        return;
-    }
-
-    console.log('success:','打包完成kitty-ui...')
-   
-
-});
-
- //打包@kitty-ui/utils包
- exec('cd packages/utils && pnpm run build && mversion patch', function (error) {
-    if (error) {
-        console.error('error: ' + error);
-        return;
-    }
-
-    console.log('success','打包完成@components/utils...')
-
-});
-
-```
-
-逻辑很简单，就是进入每个包下执行build操作并且让其版本自增。
-
-直接在根目录执行: pnpm run build 你就会发现这两个包都被打包并且版本号的patch都+1了
 
 
 ## 开始发布
