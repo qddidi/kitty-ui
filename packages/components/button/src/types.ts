@@ -1,5 +1,7 @@
 
 import { ExtractPropTypes } from 'vue'
+
+
 export type ButtonType =
   | 'default'
   | 'primary'
@@ -16,3 +18,5 @@ type buttonProps = {
 }
 
 export type ButtonProps = ExtractPropTypes<buttonProps>
+
+export declare const Button: any

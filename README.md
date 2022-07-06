@@ -548,7 +548,7 @@ export default {
 ```
 {
   "name": "@kitty-ui/components",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
     "build": "rollup -c"
@@ -571,7 +571,7 @@ export default {
 import { Button } from 'kitty-ui'
 ```
 
-到现在这个包现在已经可以发布到npm上使用了
+到现在这个包现在已经可以发布到npm上使用了,但是我们需要对其做一些优化并且支持ts+vue3项目使用
 
 ### 打包组件库并且生成声明文件
 
@@ -584,7 +584,16 @@ pnpm i rollup-plugin-dts -D -w
 
 ```
 
-因为要输出.d.ts文件所以需要将rollup配置改成数组形式打包多文件：(components/rollup.config.ts如下，其余代码有对应注释)
+因为要输出index.d.ts文件所以在components下新建index.d.ts：
+
+首先声明我们的kitty-ui模块,不然在ts项目中使用我们的kitty-ui会报错(找不到对应模块);然后将我们组件下的types全部集中导出
+
+```
+declare module 'kitty-ui' {}
+export * from './button/src/types'
+```
+
+配置rollup.config.ts(components/rollup.config.ts如下)
 
 
 ```
@@ -592,32 +601,8 @@ import vue from 'rollup-plugin-vue'
 import typescript from 'rollup-plugin-typescript2'
 import postcss from 'rollup-plugin-postcss'
 import dts from 'rollup-plugin-dts'
-//import { dirname, resolve } from 'path'
-import fs from 'fs'
 
-//获取根目录下文件夹
-const files = fs.readdirSync(__dirname)
 
-//过滤掉除了组件的文件
-
-const comName = files.filter((item) => {
-    return (item.indexOf('.') == -1 && item != 'node_modules' && item != 'build')
-})
-
-//遍历rollup配置文件,以便于将每个配置文件打包到对应组件目录下
-const buildConfig = comName.map(name => {
-    return {
-        // 生成 .d.ts 类型声明文件
-        input: `./${name}/src/types.ts`,
-        output: {
-            file: `../dist/kittyui/types/${name}/index.d.ts`,
-            format: 'es',
-        },
-        plugins: [dts()],
-    }
-});
-
-//注入配置
 export default [{
     // 入口
     input: './index.ts',
@@ -636,12 +621,43 @@ export default [{
         postcss()
     ]
 },
-...buildConfig
+{
+    // 生成 根目录类型声明文件
+    input: `./index.d.ts`,
+    output: {
+        file: `../dist/kittyui/index.d.ts`,
+        format: 'es',
+    },
+    plugins: [dts()],
+}
 ]
+
 
 ```
 
-到这里其实我们已经完成了组件的开发与打包，并且已经可以发布到npm上了。但是我们还需要写一些脚本文件来帮助我们更好的操作我们的项目
+生成声明文件后记得将我们组件库的package.json新增**typings**字段;这样组件库就支持在Typescript项目中使用了.
+
+components/package.json如下:
+
+
+```
+{
+  "name": "@kitty-ui/components",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "build": "node build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "typings": "./index.d.ts"
+}
+
+```
+
+接下来我们来写一些node脚本来处理我们的项目
 
 ## 增加脚本文件处理
 

@@ -38,7 +38,7 @@ importers:
 
   examples:
     specifiers:
-      '@kitty-ui/components': workspace:^1.0.0
+      '@kitty-ui/components': workspace:^1.0.12
     dependencies:
       '@kitty-ui/components': link:../packages/components
 

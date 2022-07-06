@@ -1,1 +1,13 @@
-{"name":"kitty-ui","version":"1.0.10","main":"index.ts","scripts":{"build":"node build/index.js"},"keywords":[],"author":"","license":"MIT","description":""}
+{
+  "name": "kitty-ui",
+  "version": "1.0.9",
+  "main": "index.ts",
+  "scripts": {
+    "build": "node build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "typings": "./index.d.ts"
+}
