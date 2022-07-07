@@ -4,6 +4,6 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { Button } from '@kitty-ui/components'
+import { Button } from 'kitty-ui'
 console.log(Button)
 </script>

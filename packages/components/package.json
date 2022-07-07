@@ -1,17 +1,21 @@
 {
   "name": "kitty-ui",
-  "version": "1.0.16",
-  "main": "es/index.js",
+  "version": "2.0.1",
+  "main": "src/index.ts",
+  
   "scripts": {
     "build": "vite build"
   },
   "files": [
-    "es"
+    "es",
+    "lib"
   ],
-  "style": "./es/style",
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "kitty-ui",
+    "vue3组件库"
+  ],
+  "author": "小月",
   "license": "MIT",
   "description": "",
-  "typings": "./es/index.d.ts"
+  "typings": "lib/index.d.ts"
 }

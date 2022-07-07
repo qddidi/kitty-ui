@@ -8,8 +8,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "@kitty-ui/components": "^1.0.0"
-  }
+  "license": "MIT"
+  
 }

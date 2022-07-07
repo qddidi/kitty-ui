@@ -6,4 +6,13 @@
 
 <script lang="ts">
 import './style/index'
+import {defineComponent} from 'vue'
+export default defineComponent({
+name:'button',
+setup() {
+
+return {
+};
+},
+});
 </script>

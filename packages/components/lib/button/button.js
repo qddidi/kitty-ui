@@ -1,8 +1,13 @@
 "use strict";
-require("./style/index.css");
+require("./style/index.js");
 var vue = require("vue");
 var pluginVue_exportHelper = require("../_virtual/plugin-vue_export-helper.js");
-const _sfc_main = {};
+const _sfc_main = vue.defineComponent({
+  name: "button",
+  setup() {
+    return {};
+  }
+});
 const _hoisted_1 = { class: "wrap" };
 const _hoisted_2 = /* @__PURE__ */ vue.createElementVNode("button", { class: "k-btn" }, "\u6309\u94AE", -1);
 const _hoisted_3 = [
