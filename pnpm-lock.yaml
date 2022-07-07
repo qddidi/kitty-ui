@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@vitejs/plugin-vue': ^2.3.3
       '@vue/compiler-sfc': ^3.2.37
+      autoprefixer: ^10.4.7
       child_process: ^1.0.2
       less: ^4.1.3
       rollup: ^2.75.7
@@ -24,6 +25,7 @@ importers:
     devDependencies:
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.12+vue@3.2.37
       '@vue/compiler-sfc': 3.2.37
+      autoprefixer: 10.4.7
       child_process: 1.0.2
       less: 4.1.3
       rollup: 2.75.7
@@ -42,27 +44,18 @@ importers:
 
   examples:
     specifiers:
-      '@kitty-ui/components': workspace:^1.0.12
+      kitty-ui: workspace:^1.0.12
     dependencies:
-      '@kitty-ui/components': link:../packages/components
+      kitty-ui: link:../packages/components
 
   packages/components:
     specifiers: {}
-
-  packages/dist/kittyui:
-    specifiers: {}
-
-  packages/dist/utils:
-    specifiers:
-      '@kitty-ui/components': ^1.0.0
-    dependencies:
-      '@kitty-ui/components': link:../../components
 
   packages/utils:
     specifiers:
       '@kitty-ui/components': ^1.0.0
     dependencies:
-      '@kitty-ui/components': link:../components
+      '@kitty-ui/components': 1.0.3
 
 packages:
 
@@ -105,6 +98,10 @@ packages:
       '@babel/helper-validator-identifier': 7.18.6
       to-fast-properties: 2.0.0
     dev: true
+
+  /@kitty-ui/components/1.0.3:
+    resolution: {integrity: sha512-IU65nKF97LNCIQulSX7B8z7KuhlaecWxI4dyc+0wPah99ojs71zxOzKYfQahwpzN5Nvbfq8Owc9kJ63W5L+uSw==}
+    dev: false
 
   /@microsoft/api-extractor-model/7.21.0:
     resolution: {integrity: sha512-NN4mXzoQWTuzznIcnLWeV6tGyn6Os9frDK6M/mmTXZ73vUYOvSWoKQ5SYzyzP7HF3YtvTmr1Rs+DsBb0HRx7WQ==}
@@ -348,6 +345,21 @@ packages:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
     dependencies:
       sprintf-js: 1.0.3
+    dev: true
+
+  /autoprefixer/10.4.7:
+    resolution: {integrity: sha512-ypHju4Y2Oav95SipEcCcI5J7CGPuvz8oat7sUtYj3ClK44bldfvtvcxK6IEK++7rqB7YchDGzweZIBG+SD0ZAA==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.21.1
+      caniuse-lite: 1.0.30001362
+      fraction.js: 4.2.0
+      normalize-range: 0.1.2
+      picocolors: 1.0.0
+      postcss-value-parser: 4.2.0
     dev: true
 
   /balanced-match/1.0.2:
@@ -930,6 +942,10 @@ packages:
       path-exists: 4.0.0
     dev: true
 
+  /fraction.js/4.2.0:
+    resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
+    dev: true
+
   /fs-extra/10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
@@ -1261,6 +1277,11 @@ packages:
 
   /node-releases/2.0.5:
     resolution: {integrity: sha512-U9h1NLROZTq9uE1SNffn6WuPDg8icmi3ns4rEl/oTfIle4iLjTliCzgTsbaIFMq/Xn078/lfY/BL0GWZ+psK4Q==}
+    dev: true
+
+  /normalize-range/0.1.2:
+    resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /normalize-url/6.1.0:

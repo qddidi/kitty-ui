@@ -8,6 +8,7 @@
   "files": [
     "es"
   ],
+  "style": "./es/style",
   "keywords": [],
   "author": "",
   "license": "MIT",

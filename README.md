@@ -470,7 +470,7 @@ vite-plugin-libcss
 
 pnpm i vite-plugin-libcss -D -w
 
-
+pnpm i autoprefixer -D -w
 
 
 ## 开始发布
