@@ -409,7 +409,6 @@ import { Button } from 'kitty-ui'
 
 不出意外的话你的页面就会展示我们刚刚写的button组件了
 
-## 正式开发一个Button组件
 
 好了万事具...(其实还差个打包，这个后面再说~)；接下来的工作就是专注于组件的开发了；让我们回到我们的button组件目录下（测试页面不用关，此时我们已经可以边开发边调试边看效果了）
 
@@ -455,13 +454,26 @@ import type 表示只导入类型；ExtractPropTypes是vue3中内置的类型声
 
 很多时候我们在vue中使用一个组件会用的app.use 将组件挂载到全局。要使用app.use函数的话我们需要让我们的每个组件都提供一个install方法，app.use()的时候就会调用这个方法;
 
-我们将components/src/button/button.vue
+我们将button/index.ts调整为
 
+```
+import button from './button.vue'
+import type {App,Plugin} from "vue"
+type SFCWithInstall<T> = T&Plugin
+const withInstall = <T>(comp:T) => {
+    (comp as SFCWithInstall<T>).install = (app:App)=>{
+        //注册组件
+        app.component((comp as any).name,comp)
+    }
+    return comp as SFCWithInstall<T>
+}
+const Button = withInstall(button)
+export default Button
+```
 
+此时我们就可以使用app.use来挂载我们的组件啦
 
-
-
-
+其实withInstall方法可以做个公共方法放到工具库里，因为后续每个组件都会用到，这里等后面开发组件的时候再调整
 
 
 到这里组件开发的基本配置已经完成，最后我们对我们的组件库以及工具库进行打包，打包之前如果要发公共包的话记得将我们的各个包的协议改为MIT开源协议
@@ -535,7 +547,7 @@ export default defineConfig(
 
 其实到这里就已经可以直接打包了；components下执行： pnpm run build你就会发现打包了es和lib两个目录
 
-[]!()
+![kitty_1.jpg](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cd1f139224304b159fdf12ad5836a2c0~tplv-k3u1fbpfcp-watermark.image?)
 
 
 到这里其实打包的组件库只能给js项目使用,在ts项目下运行会出现一些错误，而且使用的时候还会失去代码提示功能，这样的话我们就失去了用ts开发组件库的意义了。所以我们需要在打包的库里加入声明文件(.d.ts)。
@@ -635,6 +647,17 @@ pnpm publish --access public
 
 发布的时候要将npm的源切换到npm的官方地址(https://registry.npmjs.org/); 如果你使用了其它镜像源的话
 
+## 样式问题
+
+引入我们打包后的组件你会发现没有样式，所以你需要在全局引入我们的style.css才行；如 main.ts中需要
+
+```
+import 'kitty-ui/es/style.css';
+```
+
+很显然这种组件库并不是我们想要的，我们需要的组件库是每个css样式放在每个组件其对应目录下，这样就不需要每次都全量导入我们的css样式。
+
+下面就让我们来看下如何打包样式
 
 ## 直接使用
 
