@@ -14,7 +14,7 @@ export default defineConfig(
             //cssCodeSplit: true,
             rollupOptions: {
                 //忽略打包vue文件
-                external: ['vue', /\.less/],
+                external: ['vue'],
                 input: ['src/index.ts'],
                 output: [
                     {
@@ -56,7 +56,7 @@ export default defineConfig(
             }),
             //因为这个插件默认打包到es下，我们想让lib目录下也生成声明文件需要再配置一个
             dts({
-                outputDir: 'lib',
+                outputDir:'lib',
                 tsConfigFilePath: '../../tsconfig.json'
             }),
 
@@ -73,7 +73,7 @@ export default defineConfig(
                         this.emitFile({
                             type: 'asset',
                             fileName: key,//文件名名不变
-                            source: bundler.code.replace(/\.less/g, '.css')
+                            source: bundler.code.replace(/\.less/, '.css')
                         })
                     }
                 }

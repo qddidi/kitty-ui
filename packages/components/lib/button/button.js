@@ -1,5 +1,5 @@
 "use strict";
-require("./style/index.js");
+require("./style/index.css");
 var vue = require("vue");
 var pluginVue_exportHelper = require("../_virtual/plugin-vue_export-helper.js");
 const _sfc_main = vue.defineComponent({

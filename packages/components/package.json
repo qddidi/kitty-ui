@@ -1,10 +1,10 @@
 {
   "name": "kitty-ui",
-  "version": "2.0.1",
-  "main": "src/index.ts",
-  
+  "version": "2.0.2",
+  "main": "./src/index.ts",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "build:less": "esno build/buildLess"
   },
   "files": [
     "es",

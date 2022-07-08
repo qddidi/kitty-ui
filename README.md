@@ -308,9 +308,15 @@ const result = testfun (1,1)
 console.log(result)
 ```
 
-* ts-node
+* esno
 
-由于组件库是基于ts的，所以需要安装ts-node来执行ts文件便于测试组件之间的引入情况
+由于组件库是基于ts的，所以需要安装esno来执行ts文件便于测试组件之间的引入情况
+
+控制台输入**esno xxx.ts**即可执行ts文件
+
+```
+npm i esno -g
+```
 
 ### 包之间本地调试
 
@@ -666,7 +672,244 @@ import 'kitty-ui/es/style.css';
 
 很显然这种组件库并不是我们想要的，我们需要的组件库是每个css样式放在每个组件其对应目录下，这样就不需要每次都全量导入我们的css样式。
 
-下面就让我们来看下如何打包样式
+下面就让我们来看下如何把样式拆分打包
+
+### 处理less文件
+
+首先我们需要做的是将less打包成css然后放到打包后对应的文件目录下,我们在components下新建build文件夹来存放我们的一些打包工具,然后新建buildLess.ts,首先我们需要先安装一些工具cpy和fast-glob
+
+```
+pnpm i cpy fast-glob -D -w
+```
+
+* cpy
+
+它可以直接复制我们规定的文件并将我们的文件copy到指定目录,比如buildLess.ts:
+
+```
+import cpy from 'cpy'
+import { resolve } from 'path'
+
+const sourceDir = resolve(__dirname, '../src')
+//lib文件
+const targetLib = resolve(__dirname, '../lib')
+//es文件
+const targetEs = resolve(__dirname, '../es')
+console.log(sourceDir);
+const buildLess = async () => {
+    await cpy(`${sourceDir}/**/*.less`, targetLib)
+    await cpy(`${sourceDir}/**/*.less`, targetEs)
+}
+buildLess()
+
+```
+
+然后在package.json中新增命令
+
+```
+...
+"scripts": {
+    "build": "vite build",
+    "build:less": "esno build/buildLess"
+  },
+...
+```
+
+终端执行 **pnpm run build:less** 你就会发现lib和es文件对应目录下就出现了less文件.
+
+但是我们最终要的并不是less文件而是css文件,所以我们要将less打包成css,所以我们需要用的less模块.在ts中引入less因为它本身没有声明文件所以会出现类型错误,所以我们要先安装它的 **@types/less** 
+
+```
+pnpm i --save-dev @types/less -D -w
+```
+
+buildLess.ts如下(详细注释都在代码中)
+
+```
+import cpy from 'cpy'
+import { resolve } from 'path'
+import { promises as fs } from "fs"
+import less from "less"
+import glob from "fast-glob"
+const sourceDir = resolve(__dirname, '../src')
+//lib文件目录
+const targetLib = resolve(__dirname, '../lib')
+//es文件目录
+const targetEs = resolve(__dirname, '../es')
+
+
+
+const buildLess = async () => {
+    //直接将less文件复制到打包后目录
+    await cpy(`${sourceDir}/**/*.less`, targetLib)
+    await cpy(`${sourceDir}/**/*.less`, targetEs)
+
+    //获取打包后.less文件目录(lib和es一样)
+    const lessFils = await glob("**/*.less", { cwd: targetLib, onlyFiles: true })
+
+    //遍历含有less的目录
+    for (let path in lessFils) {
+        const lessPathLib = `${targetLib}/${lessFils[path]}`
+        const lessPathEs = `${targetEs}/${lessFils[path]}`
+
+        //获取less文件字符串
+        const lessCode = await fs.readFile(lessPathLib, 'utf-8')
+        //将less解析成css
+        const code = await less.render(lessCode)
+
+        //拿到.css后缀path
+        const cssPathLib = lessPathLib.replace('.less', '.css')
+        const cssPathEs = lessPathEs.replace('.less', '.css')
+
+        //将css写入对应目录
+        await fs.writeFile(cssPathLib, code.css)
+        await fs.writeFile(cssPathEs, code.css)
+    }
+
+
+
+}
+buildLess()
+
+```
+
+执行打包命令之后你会发现对应文件夹下多了.css文件
+
+![1657259623489.jpg](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a4d62ff556a46cd8ecead9d98b327d4~tplv-k3u1fbpfcp-watermark.image?)
+
+现在我已经将css文件放入对应的目录下了,但是我们的相关组件并没有引入这个css文件;所以我们需要的是每个打包后组件的index.js中出现如:
+
+```
+import "xxx/xxx.css"
+```
+之类的代码我们的css才会生效;所以我们需要对vite.config.ts进行相关配置
+
+
+首先我们先将.less文件忽略**external: ['vue', /\.less/],**这时候打包后的文件中如button/index.js就会出现
+
+```
+import "./style/index.less";
+```
+
+然后我们再将打包后代码的.less换成.css就大功告成了
+
+```
+...
+plugins: [
+            ...
+
+            {
+                name: 'style',
+                generateBundle(config, bundle) {
+                    //这里可以获取打包后的文件目录以及代码code
+                    const keys = Object.keys(bundle)
+
+                    for (const key of keys) {
+                        const bundler: any = bundle[key as any]
+                        //rollup内置方法,将所有输出文件code中的.less换成.css,因为我们当时没有打包less文件
+
+                        this.emitFile({
+                            type: 'asset',
+                            fileName: key,//文件名名不变
+                            source: bundler.code.replace(/\.less/g, '.css')
+                        })
+                    }
+                }
+            }
+        ...
+        ]
+...
+```
+
+我们最终的vite.config.ts如下
+
+```
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue"
+import dts from 'vite-plugin-dts'
+
+export default defineConfig(
+    {
+        build: {
+            target: 'modules',
+            //打包文件目录
+            outDir: "es",
+            //压缩
+            minify: false,
+            //css分离
+            //cssCodeSplit: true,
+            rollupOptions: {
+                //忽略打包vue和.less文件
+                external: ['vue', /\.less/],
+                input: ['src/index.ts'],
+                output: [
+                    {
+                        format: 'es',
+                        //不用打包成.es.js,这里我们想把它打包成.js
+                        entryFileNames: '[name].js',
+                        //让打包目录和我们目录对应
+                        preserveModules: true,
+                        //配置打包根目录
+                        dir: 'es',
+                        preserveModulesRoot: 'src'
+                    },
+                    {
+                        format: 'cjs',
+                        //不用打包成.mjs
+                        entryFileNames: '[name].js',
+                        //让打包目录和我们目录对应
+                        preserveModules: true,
+                        //配置打包根目录
+                        dir: 'lib',
+                        preserveModulesRoot: 'src'
+                    }
+                ]
+            },
+            lib: {
+                entry: './index.ts',
+                formats: ['es', 'cjs']
+            }
+        },
+
+
+
+
+        plugins: [
+            vue(),
+            dts({
+                //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
+                tsConfigFilePath: '../../tsconfig.json'
+            }),
+            //因为这个插件默认打包到es下，我们想让lib目录下也生成声明文件需要再配置一个
+            dts({
+                outputDir: 'lib',
+                tsConfigFilePath: '../../tsconfig.json'
+            }),
+
+            {
+                name: 'style',
+                generateBundle(config, bundle) {
+                    //这里可以获取打包后的文件目录以及代码code
+                    const keys = Object.keys(bundle)
+
+                    for (const key of keys) {
+                        const bundler: any = bundle[key as any]
+                        //rollup内置方法,将所有输出文件code中的.less换成.css,因为我们当时没有打包less文件
+
+                        this.emitFile({
+                            type: 'asset',
+                            fileName: key,//文件名名不变
+                            source: bundler.code.replace(/\.less/g, '.css')
+                        })
+                    }
+                }
+            }
+
+        ]
+    }
+)
+
+```
 
 ## 直接使用
 
@@ -674,19 +917,12 @@ import 'kitty-ui/es/style.css';
 
 ### 安装依赖
 
-* 安装pnpm npm i pnpm -g
-* 安装mversion npm i mversion -g
-* 安装所有依赖 pnpm install
-
-### 打包命令
-
-* 打包所有 
-
-根目录执行 pnpm run build
-
-* 分别打包
-
-分别进入组件库的包(packages/components)和utils(packages/utils)包分别执行 pnpm run build
+* 安装pnpm 
+npm i pnpm -g
+* 安装esno
+npm i esno -g
+* 安装所有依赖 
+pnpm install
 
 * 本地测试
 
