@@ -911,11 +911,21 @@ export default defineConfig(
 
 ```
 
+最后我们将打包less与打包组件合成一个命令(package.json):
+
+```
+...
+"scripts": {
+    "build": "vite build & esno build/buildLess"
+  },
+...
+```
+
+后续直接执行pnpm run build 即可完成所有打包啦
+
 ## 直接使用
 
 如果你不想一步步的搭建，想直接使用现成的话，你可以直接把项目clone下来-> [kittyui](https://gitee.com/geeksdidi/kittyui),然后你只需要以下几步便可将其完成
-
-### 安装依赖
 
 * 安装pnpm 
 npm i pnpm -g
@@ -923,10 +933,10 @@ npm i pnpm -g
 npm i esno -g
 * 安装所有依赖 
 pnpm install
-
 * 本地测试
-
 进入examples文件夹执行 pnpm run dev 启动vue3项目
+* 打包
+pnpm run build
 
 
 ## 写在最后
