@@ -1,6 +1,127 @@
-.wrap {
-    display: block;
-    .k-btn {
-        color: red;
-    }
+.k-button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  &:hover {
+    color: #409eff;
+    border-color: #c6e2ff;
+    background-color: #ecf5ff;
+  }
+}
+.k-button--primary {
+  color: #fff;
+  background-color: #409eff;
+  border-color: #409eff;
+  &:hover {
+    background: #66b1ff;
+    border-color: #66b1ff;
+    color: #fff;
+  }
+}
+.k-button--primary.is-plain {
+  color: #409eff;
+  background: #ecf5ff;
+  border-color: #b3d8ff;
+  &:hover {
+    color: #fff;
+    background-color: #409eff;
+    border-color: #409eff;
+  }
+}
+.k-button--success {
+  color: #fff;
+  background-color: #67c23a;
+  border-color: #67c23a;
+  &:hover {
+    background: #85ce61;
+    border-color: #85ce61;
+    color: #fff;
+  }
+}
+.k-button--success.is-plain {
+  color: #67c23a;
+  background: #f0f9eb;
+  border-color: #c2e7b0;
+  &:hover {
+    color: #fff;
+    background-color: #67c23a;
+    border-color: #67c23a;
+  }
+}
+.k-button--info {
+  color: #fff;
+  background-color: #909399;
+  border-color: #909399;
+  &:hover {
+    background: #a6a9ad;
+    border-color: #a6a9ad;
+    color: #fff;
+  }
+}
+.k-button--info.is-plain {
+  color: #909399;
+  background-color: #f4f4f5;
+  border-color: #d3d4d6;
+  &:hover {
+    color: #fff;
+    background-color: #909399;
+    border-color: #909399;
+  }
+}
+.k-button--warning {
+  color: #fff;
+  background-color: #e6a23c;
+  border-color: #e6a23c;
+  &:hover {
+    background: #ebb563;
+    border-color: #ebb563;
+    color: #fff;
+  }
+}
+.k-button--warning.is-plain {
+  color: #e6a23c;
+  background: #ecf5ff;
+  border-color: #b3d8ff;
+  &:hover {
+    color: #fff;
+    background-color: #e6a23c;
+    border-color: #e6a23c;
+  }
+}
+.k-button--danger {
+  color: #fff;
+  background-color: #f56c6c;
+  border-color: #f56c6c;
+  &:hover {
+    background: #f78989;
+    border-color: #f78989;
+    color: #fff;
+  }
+}
+.k-button--warning.is-plain {
+  color: #f56c6c;
+  background: #fef0f0;
+  border-color: #fbc4c4;
+  &:hover {
+    color: #fff;
+    background-color: #f56c6c;
+    border-color: #f56c6c;
+  }
+}
+.is-round {
+  border-radius: 20px;
 }

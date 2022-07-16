@@ -30,7 +30,7 @@ importers:
 
   examples:
     specifiers:
-      kitty-ui: workspace:^2.0.2
+      kitty-ui: workspace:^2.0.3
     dependencies:
       kitty-ui: link:../packages/components
 
