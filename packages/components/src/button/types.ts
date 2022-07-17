@@ -2,25 +2,26 @@
 import { ExtractPropTypes } from 'vue'
 
 
-export const ButtonType = ['primary', 'success', 'info', 'warning', 'danger']
+export const ButtonType = ['primary', 'success', 'info', 'warning', 'danger', 'text']
 
-export const ButtonSize = ['large', 'normal', 'small', 'mini'];
+export const ButtonSize = ['midium', 'small', 'mini'];
 
 
 export const buttonProps = {
   type: {
     type: String,
     validator(value: string) {
-
       return ButtonType.includes(value)
-    },
-    values: 'default'
+    }
   },
   plain: Boolean,
   round: Boolean,
+  disabled: Boolean,
   size: {
     type: String,
-    values: ButtonSize
+    validator(value: string) {
+      return ButtonSize.includes(value)
+    }
   }
 }
 
