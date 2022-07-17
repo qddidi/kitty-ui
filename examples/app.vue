@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Button @click.native="btnClick">默认按钮</Button>
+        <Button>默认按钮</Button>
         <Button type="primary">主要按钮</Button>
         <Button type="success">成功按钮</Button>
         <Button type="info">信息按钮</Button>
@@ -45,15 +45,15 @@
         <Button size="medium">中等按钮</Button>
         <Button size="small">小型按钮</Button>
         <Button size="mini">超小按钮</Button>
-        <Icon />
+        <br>
+        <br>
+        <Button type="success" icon="edit">图标按钮</Button>
+        <Button type="primary" icon="map" icon-position="right">图标按钮</Button>
+        <Button type="primary" icon="ashbin"></Button>
     </div>
 </template>
 <script lang="ts" setup>
-import { Button, Icon } from 'kitty-ui'
-
-const btnClick = () => {
-    console.log('我被点击')
-}
+import { Button } from 'kitty-ui'
 
 </script>
 <style lang="less">

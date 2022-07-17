@@ -2,8 +2,10 @@ button组件几乎是每个组件库都有的；其实实现一个button组件�
 
 首先我们先看下我们这个button组件要实现的功能
 
-* 使用type、plain、round，size属性来定义组件样式
+* 使用type，plain属性来定义按钮基本样式
+* round，size控制按钮形状大小
 * 通过disabled来控制按钮是否可点击
+* 支持icon加入图标增强辨识度
 
 
 ## type实现
@@ -391,3 +393,120 @@ import { Button } from 'kitty-ui'
 
 
 ![1658045827629.jpg](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/853aa65f5223436281d6dc8a6b8229fb~tplv-k3u1fbpfcp-watermark.image?)
+
+
+## 图标
+
+通过icon属性设置按钮图标，支持Icon组件里的所有图标(Icon组件下一篇文章将会详细介绍)。
+
+* types.ts中设置icon类型
+
+```
+export const buttonProps = {
+  type: {
+    type: String,
+    validator(value: string) {
+      return ButtonType.includes(value)
+    }
+  },
+  plain: Boolean,
+  round: Boolean,
+  disabled: Boolean,
+  icon: String,
+  iconPosition: String,
+  size: {
+    type: String,
+    validator(value: string) {
+      return ButtonSize.includes(value)
+    }
+  }
+}
+```
+
+* 修改button组件
+
+icon可以传入icon组件中定义的name，iconPosition可选right使图标在按钮右侧。
+
+```
+<!-- button.vue -->
+<template>
+    <button class="k-button" :class="styleClass">
+        <Icon class="icon" v-if="iconFont.iconName && iconFont.iconPosition != 'right'" :name="iconFont.iconName" />
+        <slot />
+        <Icon class="icon" v-if="iconFont.iconPosition == 'right' && iconFont.iconName" :name="iconFont.iconName" />
+    </button>
+</template>
+
+<script lang="ts">
+import './style/index.less'
+import { defineComponent, computed } from 'vue'
+import { buttonProps } from './types'
+import Icon from '../Icon/icon.vue'
+export default defineComponent({
+    name: 'k-button',
+    props: buttonProps,
+    components: { Icon },
+    setup(props) {
+
+        const styleClass = computed(() => {
+            return {
+                [`k-button--${props.type}`]: props.type,
+                'is-plain': props.plain,
+                'is-round': props.round,
+                'is-disabled': props.disabled,
+                [`k-button--${props.size}`]: props.size,
+            }
+        })
+
+        //图标
+        const iconFont = computed(() => {
+            const iconName = props.icon
+            const position = props.iconPosition
+            console.log(position)
+            return {
+                iconName,
+                iconPosition
+            }
+        })
+
+        return {
+            styleClass,
+            Icon,
+            iconFont
+        };
+    },
+});
+</script>
+
+
+```
+
+然后在examples/App.vue使用并查看效果
+
+```
+<template>
+    <div>
+        <Button type="success" icon="edit">图标按钮</Button>
+        <Button type="primary" icon="map" icon-position="right">图标按钮</Button>
+        <Button type="primary" icon="ashbin"></Button>
+    </div>
+</template>
+<script lang="ts" setup>
+import { Button } from 'kitty-ui'
+
+</script>
+<style lang="less">
+.k-button {
+    margin-right: 10px;
+}
+</style>
+
+```
+
+
+![1658069989903.jpg](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/27d1ecb0c0b4434aa9a62b6203e62421~tplv-k3u1fbpfcp-watermark.image?)
+
+到这里一个button组件的开发基本就结束了，看起来一个不起眼的button组件里面其实还是包含些许内容的。如果你想了解更多组件的实现的话可以关注[专栏](https://juejin.cn/column/7118932817119019015)，将不定期更新其它组件的实现。
+
+> 如果你觉得本篇文章对你有帮助的话，动动指头点个赞吧orz，你的鼓励将会是我持续创作的动力
+
