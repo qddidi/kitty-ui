@@ -9,5 +9,4 @@ const withInstall = <T>(comp: T) => {
     return comp as SFCWithInstall<T>
 }
 const Button = withInstall(button)
-console.log(Button, 111)
 export default Button
