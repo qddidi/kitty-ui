@@ -11,6 +11,9 @@ pnpm install
 进入examples文件夹执行 pnpm run dev 启动vue3项目
 
 ## 打包
-packages/components下执行
 
-pnpm run build
+pnpm run build:kitty
+
+## 发布
+
+pnpm run publish:kitty
