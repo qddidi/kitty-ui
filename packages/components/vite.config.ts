@@ -25,7 +25,7 @@ export default defineConfig(
                         preserveModules: true,
                         //配置打包根目录
                         dir: resolve(__dirname, './dist/es'),
-                        preserveModulesRoot: 'dist'
+                        preserveModulesRoot: 'src'
                     },
                     {
                         format: 'cjs',
@@ -41,7 +41,7 @@ export default defineConfig(
             },
             lib: {
                 entry: './index.ts',
-                formats: ['es', 'cjs']
+                name: 'kitty',
             }
         },
 

@@ -44,11 +44,14 @@ importers:
 
   examples:
     specifiers:
-      kitty-ui: workspace:^2.1.0
+      kitty-ui: workspace:^1.0.0
     dependencies:
       kitty-ui: link:../packages/components
 
   packages/components:
+    specifiers: {}
+
+  packages/components/transitpkg:
     specifiers: {}
 
   packages/utils:
