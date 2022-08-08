@@ -49,7 +49,10 @@ importers:
       kitty-ui: link:../packages/components
 
   packages/components:
-    specifiers: {}
+    specifiers:
+      '@kitty-ui/utils': workspace:1.0.0
+    dependencies:
+      '@kitty-ui/utils': link:../utils
 
   packages/components/transitpkg:
     specifiers: {}

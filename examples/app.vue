@@ -9,6 +9,7 @@
 <script lang="ts" setup>
 import { Icon } from 'kitty-ui'
 
+
 </script>
 <style lang="less">
 .kitty-icon {

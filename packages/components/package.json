@@ -16,5 +16,8 @@
   "author": "小月",
   "license": "MIT",
   "description": "",
-  "typings": "lib/index.d.ts"
+  "typings": "lib/index.d.ts",
+  "dependencies": {
+    "@kitty-ui/utils": "workspace:1.0.0"
+  }
 }

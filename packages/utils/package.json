@@ -1,13 +1,9 @@
 {
   "name": "@kitty-ui/utils",
-  "version": "1.0.9",
+  "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-  "scripts": {
-    "build": "node build/index.js"
-  },
   "keywords": [],
   "author": "",
   "license": "MIT"
-  
 }
