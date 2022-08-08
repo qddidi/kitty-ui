@@ -7,13 +7,16 @@
     </div>
 </template>
  <script lang="ts">
- import './font/iconfont.js'
+ 
  import './style/index.less'
- import { defineComponent, computed } from 'vue'
+ import { defineComponent, computed, onMounted } from 'vue'
  import { iconProps } from './types'
  export default defineComponent({
      props: iconProps,
      setup(props) {
+         onMounted(() => {
+             import('./font/iconfont.js' as any)
+         })
          const iconName = computed(() => {
              return `#kitty-${props.name}`
          })
