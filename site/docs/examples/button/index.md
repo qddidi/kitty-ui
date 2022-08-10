@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     .example{
         border: 1px solid #f5f5f5;
         border-radius: 5px;
@@ -13,6 +13,12 @@
         padding: 8px 0;
         cursor: pointer;
         color: #1989fa;
+    }
+    a {
+      all: initial
+    }
+    a:hover {
+      all: initial
     }
 </style>
 
@@ -47,7 +53,9 @@
         <k-button type="info" round>信息按钮</k-button>
         <k-button type="warning" round>警告按钮</k-button>
         <k-button type="danger" round>危险按钮</k-button>
+        <a>123</a>
     </div>
+
 </div>
 
 <details>

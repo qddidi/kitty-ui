@@ -11,7 +11,8 @@
     "publish:kitty": "gulp -f packages/components/script/publish/gulpfile.ts",
     "docs:dev": "pnpm run --filter ./site docs:dev",
     "docs:build": "pnpm run --filter ./site docs:build",
-    "docs:serve": "pnpm run --filter ./site docs:serve"
+    "docs:serve": "pnpm run --filter ./site docs:serve",
+    "exm:dev": "pnpm run --filter ./examples dev"
   },
   "devDependencies": {
     "@types/gulp": "^4.0.9",
