@@ -2,10 +2,6 @@
 
 npm i pnpm -g
 
-## 安装 esno
-
-npm i esno -g
-
 ## 安装所有依赖
 
 pnpm install
