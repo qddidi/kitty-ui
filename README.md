@@ -29,3 +29,11 @@ pnpm run docs:build
 ## 启动打包后文档服务
 
 pnpm run docs:serve
+
+## 执行组件库测试
+
+pnpm run test
+
+## 查看测试覆盖率
+
+pnpm run coverage

@@ -6,6 +6,5 @@ export default {
         for (const comkey in components) {
             withInstall((components as any)[comkey])
         }
-
     }
 }
