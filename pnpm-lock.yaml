@@ -58,7 +58,7 @@ importers:
 
   packages/components:
     specifiers:
-      '@kitty-ui/utils': workspace:1.0.0
+      '@kitty-ui/utils': 2.0.0
     dependencies:
       '@kitty-ui/utils': link:../utils
 

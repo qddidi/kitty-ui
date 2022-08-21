@@ -15,7 +15,7 @@ export default defineConfig(
             //cssCodeSplit: true,
             rollupOptions: {
                 //忽略打包vue文件
-                external: ['vue', /\.less/],
+                external: ['vue', /\.less/, '@kitty-ui/utils'],
                 input: ['src/index.ts'],
                 output: [
                     {
@@ -26,7 +26,7 @@ export default defineConfig(
                         preserveModules: true,
                         //配置打包根目录
                         dir: resolve(__dirname, './dist/es'),
-                        preserveModulesRoot: 'src'
+                        preserveModulesRoot: resolve(__dirname, 'src')
                     },
                     {
                         format: 'cjs',
@@ -36,7 +36,7 @@ export default defineConfig(
                         preserveModules: true,
                         //配置打包根目录
                         dir: resolve(__dirname, './dist/lib'),
-                        preserveModulesRoot: 'src'
+                        preserveModulesRoot: resolve(__dirname, 'src')
                     }
                 ]
             },

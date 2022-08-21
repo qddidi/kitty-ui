@@ -1,6 +1,6 @@
 {
   "name": "kitty-ui",
-  "version": "3.0.1",
+  "version": "3.0.5",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -11,6 +11,9 @@
     "kitty-ui",
     "vue3组件库"
   ],
+  "dependencies": {
+    "@kitty-ui/utils": "2.0.1"
+  },
   "author": "小月",
   "license": "MIT",
   "description": "",

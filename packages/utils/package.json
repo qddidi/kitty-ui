@@ -1,9 +1,17 @@
 {
   "name": "@kitty-ui/utils",
-  "version": "1.0.0",
+  "version": "2.0.1",
+  "main": "dist/lib/index.js",
+  "module": "dist/es/index.js",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/lib/index.js",
   "keywords": [],
+  "files": [
+    "dist"
+  ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "vite build"
+  }
 }
