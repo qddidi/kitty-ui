@@ -16,7 +16,7 @@ export default defineConfig(
             rollupOptions: {
                 //忽略打包vue文件
                 external: ['vue', /\.less/, '@kitty-ui/utils'],
-                input: ['src/index.ts'],
+                input: ['index.ts'],
                 output: [
                     {
                         format: 'es',

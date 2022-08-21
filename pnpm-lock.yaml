@@ -58,12 +58,21 @@ importers:
 
   packages/components:
     specifiers:
-      '@kitty-ui/utils': 2.0.0
+      '@kitty-ui/utils': workspace:2.0.1
     dependencies:
       '@kitty-ui/utils': link:../utils
 
+  packages/components/dist:
+    specifiers:
+      '@kitty-ui/utils': 2.0.1
+    dependencies:
+      '@kitty-ui/utils': link:../../utils
+
   packages/components/transitpkg:
-    specifiers: {}
+    specifiers:
+      '@kitty-ui/utils': 2.0.1
+    dependencies:
+      '@kitty-ui/utils': link:../../utils
 
   packages/utils:
     specifiers: {}

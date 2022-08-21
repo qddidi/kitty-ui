@@ -16,8 +16,8 @@ export const buildStyle = () => {
         .pipe(
             autoprefixer()
         )
-        .pipe(dest(`${componentPath}/dist/lib`))
-        .pipe(dest(`${componentPath}/dist/es`));
+        .pipe(dest(`${componentPath}/dist/lib/src`))
+        .pipe(dest(`${componentPath}/dist/es/src`));
 };
 
 //打包组件

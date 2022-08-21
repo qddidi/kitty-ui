@@ -1,12 +1,11 @@
 <template>
     <div class="upload-demo">
-        <Upload @getFilesList="getFilesList" multiple accept="image/*">
-            <Button type="primary" size="small">文件上传</Button>
-        </Upload>
+        <k-upload @getFilesList="getFilesList" multiple accept="image/*">
+            <k-button type="primary" size="small">文件上传</k-button>
+        </k-upload>
     </div>
 </template>
 <script lang="ts" setup>
-import { Upload, Button } from 'kitty-ui'
 const getFilesList = (files: File[]) => {
     console.log(files)
 }

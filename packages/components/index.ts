@@ -1,10 +1,9 @@
-import { withInstall } from '@kitty-ui/utils';
 import * as components from './src/index'
 export * from './src/index'
 export default {
-    install: () => {
+    install: (app: any) => {
         for (const comkey in components) {
-            withInstall((components as any)[comkey])
+            app.component((components as any)[comkey].name, (components as any)[comkey])
         }
     }
 }
