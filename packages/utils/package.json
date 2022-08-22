@@ -4,7 +4,6 @@
   "main": "index.ts",
   "module": "index.ts",
   "description": "",
-  "main": "dist/lib/index.js",
   "keywords": [],
   "files": [
     "dist"
