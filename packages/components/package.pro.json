@@ -1,0 +1,12 @@
+{
+  "name": "kitty-ui",
+  "version": "2.1.1",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": ["es", "lib"],
+  "keywords": ["kitty-ui", "vue3组件库"],
+  "author": "小月",
+  "license": "MIT",
+  "description": "",
+  "typings": "lib/index.d.ts"
+}

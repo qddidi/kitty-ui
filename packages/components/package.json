@@ -1,0 +1,25 @@
+{
+  "name": "kitty-ui",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "keywords": [
+    "kitty-ui",
+    "vue3组件库"
+  ],
+  "author": "小月",
+  "license": "MIT",
+  "description": "",
+  "typings": "lib/index.d.ts",
+  "dependencies": {
+    "@kitty-ui/utils": "workspace:2.0.1"
+  }
+}
