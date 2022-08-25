@@ -8,7 +8,7 @@ pnpm install
 
 ## 本地测试
 
-进入 examples 文件夹执行 pnpm run dev 启动 vue3 项目
+pnpm run exm:dev
 
 ## 打包
 
