@@ -50,14 +50,8 @@ export default defineConfig(
             vue(),
             dts({
                 entryRoot: 'src',
-                outputDir: resolve(__dirname, './dist/es/src'),
+                outputDir: [resolve(__dirname, './dist/es/src'), resolve(__dirname, './dist/lib/src')],
                 //指定使用的tsconfig.json为我们整个项目根目录下掉,如果不配置,你也可以在components下新建tsconfig.json
-                tsConfigFilePath: '../../tsconfig.json'
-            }),
-            //因为这个插件默认打包到es下，我们想让lib目录下也生成声明文件需要再配置一个
-            dts({
-                entryRoot: 'src',
-                outputDir: resolve(__dirname, './dist/lib/src'),
                 tsConfigFilePath: '../../tsconfig.json'
             }),
 
