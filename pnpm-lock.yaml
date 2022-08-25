@@ -21,8 +21,8 @@ importers:
       less: ^4.1.3
       sucrase: ^3.24.0
       typescript: ^4.7.4
-      vite: ^2.9.12
-      vite-plugin-dts: 1.4.1
+      vite: 3.0.9
+      vite-plugin-dts: ^1.4.1
       vite-plugin-libcss: ^1.0.5
       vitest: ^0.21.1
       vue: ^3.2.36
@@ -31,7 +31,7 @@ importers:
       '@types/gulp-autoprefixer': 0.0.33
       '@types/gulp-less': 0.0.32
       '@types/less': 3.0.3
-      '@vitejs/plugin-vue': 2.3.3_vite@2.9.12+vue@3.2.37
+      '@vitejs/plugin-vue': 2.3.3_vite@3.0.9+vue@3.2.37
       '@vue/compiler-sfc': 3.2.37
       '@vue/test-utils': 2.0.2_vue@3.2.37
       c8: 7.12.0
@@ -44,9 +44,9 @@ importers:
       less: 4.1.3
       sucrase: 3.24.0
       typescript: 4.7.4
-      vite: 2.9.12_less@4.1.3
-      vite-plugin-dts: 1.4.1_vite@2.9.12
-      vite-plugin-libcss: 1.0.5_vite@2.9.12
+      vite: 3.0.9_less@4.1.3
+      vite-plugin-dts: 1.4.1_vite@3.0.9
+      vite-plugin-libcss: 1.0.5_vite@3.0.9
       vitest: 0.21.1_k3ffu6ugiiv6ijlurkxssun4l4
       vue: 3.2.37
 
@@ -499,6 +499,17 @@ packages:
       vue: ^3.2.25
     dependencies:
       vite: 2.9.12_less@4.1.3
+      vue: 3.2.37
+    dev: true
+
+  /@vitejs/plugin-vue/2.3.3_vite@3.0.9+vue@3.2.37:
+    resolution: {integrity: sha512-SmQLDyhz+6lGJhPELsBdzXGc+AcaT8stgkbiTFGpXPe8Tl1tJaBw1A6pxDqDuRsVkD8uscrkx3hA7QDOoKYtyw==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      vite: ^2.5.10
+      vue: ^3.2.25
+    dependencies:
+      vite: 3.0.9_less@4.1.3
       vue: 3.2.37
     dev: true
 
@@ -3370,6 +3381,15 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /postcss/8.4.16:
+    resolution: {integrity: sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.4
+      picocolors: 1.0.0
+      source-map-js: 1.0.2
+    dev: true
+
   /preact/10.10.1:
     resolution: {integrity: sha512-cXljG59ylGtSLismoLojXPAGvnh2ipQr3BYz9KZQr+1sdASCT+sR/v8dSMDS96xGCdtln2wHfAHCnLJK+XcBNg==}
     dev: true
@@ -4316,7 +4336,7 @@ packages:
       replace-ext: 1.0.1
     dev: true
 
-  /vite-plugin-dts/1.4.1_vite@2.9.12:
+  /vite-plugin-dts/1.4.1_vite@3.0.9:
     resolution: {integrity: sha512-jo7E4ZeheD2o48oGiI3EygPbej7ZkGFHg3GVTt7Wuo6NgzThLvuzGGuduaFpnhJOGi1piDFsu6oui/wDKIIORQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -4329,17 +4349,17 @@ packages:
       fast-glob: 3.2.11
       fs-extra: 10.1.0
       ts-morph: 14.0.0
-      vite: 2.9.12_less@4.1.3
+      vite: 3.0.9_less@4.1.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-libcss/1.0.5_vite@2.9.12:
+  /vite-plugin-libcss/1.0.5_vite@3.0.9:
     resolution: {integrity: sha512-NUQwWhn9j8fpRBwHeDr35a3TuRP0xvdIHtJni+3DcnPcq4Vrg+G5A3ZtCJ8y2EC83G97tBJ36svPdiIVuBEfsQ==}
     peerDependencies:
       vite: ^2
     dependencies:
-      vite: 2.9.12_less@4.1.3
+      vite: 3.0.9_less@4.1.3
     dev: true
 
   /vite/2.9.12:
@@ -4385,6 +4405,34 @@ packages:
       esbuild: 0.14.47
       less: 4.1.3
       postcss: 8.4.14
+      resolve: 1.22.1
+      rollup: 2.75.7
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vite/3.0.9_less@4.1.3:
+    resolution: {integrity: sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.14.47
+      less: 4.1.3
+      postcss: 8.4.16
       resolve: 1.22.1
       rollup: 2.75.7
     optionalDependencies:
@@ -4451,12 +4499,13 @@ packages:
       local-pkg: 0.4.2
       tinypool: 0.2.4
       tinyspy: 1.0.0
-      vite: 2.9.12_less@4.1.3
+      vite: 3.0.9_less@4.1.3
     transitivePeerDependencies:
       - less
       - sass
       - stylus
       - supports-color
+      - terser
     dev: true
 
   /vscode-oniguruma/1.6.2:
