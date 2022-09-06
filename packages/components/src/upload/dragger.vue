@@ -15,7 +15,9 @@ import Icon from '../Icon/icon.vue'
 const emits = defineEmits(['getFilesList', 'fileUpload'])
 const fileArea = ref()
 const isEnter = ref(false)
+const timer = ref(null);
 const filesList = ref<File[]>([])
+
 onMounted(() => {
     fileArea.value.addEventListener('drop', (e: any) => {
         e.preventDefault()
@@ -23,19 +25,21 @@ onMounted(() => {
         emits('getFilesList', filesList.value)
 
     }, false)
-    fileArea.value.addEventListener('dragover', (e: Event) => {
-        e.preventDefault();
-
-    }, false)
-    fileArea.value.addEventListener('dragenter', (e: Event) => {
-        isEnter.value = true
-        e.preventDefault();
-
-    }, false)
-    fileArea.value.addEventListener('dragleave', (e: Event) => {
-        isEnter.value = false
-        e.preventDefault();
-
-    }, false)
+    fileArea.value.addEventListener('dragover', onDragover, false);
 })
+
+const onDragover = (e:Event) => {
+  isEnter.value = true;
+  // dragover+防抖代替dragenter和dragleave，因为dragleave进入子元素也会触发
+  if (timer.value !== null) {
+    clearTimeout(timer.value);
+  }
+  timer.value = setTimeout(() => {
+    isEnter.value = false;
+    timer.value = null;
+  }, 100);
+
+  e.stopPropagation();
+  e.preventDefault();
+};
 </script>
