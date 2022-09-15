@@ -13,7 +13,7 @@
 import './style/index.less'
 import { defineComponent, computed } from 'vue'
 import { buttonProps } from './types'
-import Icon from '../Icon/icon.vue'
+import Icon from '../icon/icon.vue'
 export default defineComponent({
     name: 'k-button',
     props: buttonProps,
