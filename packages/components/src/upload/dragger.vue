@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import './style/drag.less'
 import { ref, onMounted } from 'vue'
-import Icon from '../Icon/icon.vue'
+import Icon from '../icon/icon.vue'
 const emits = defineEmits(['getFilesList', 'fileUpload'])
 const fileArea = ref()
 const isEnter = ref(false)

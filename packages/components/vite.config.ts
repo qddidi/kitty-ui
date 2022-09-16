@@ -24,9 +24,10 @@ export default defineConfig(
                         entryFileNames: '[name].js',
                         //让打包目录和我们目录对应
                         preserveModules: true,
+                        exports: 'named',
                         //配置打包根目录
                         dir: resolve(__dirname, './dist/es'),
-                        preserveModulesRoot: resolve(__dirname, 'src')
+
                     },
                     {
                         format: 'cjs',
@@ -34,9 +35,10 @@ export default defineConfig(
                         entryFileNames: '[name].js',
                         //让打包目录和我们目录对应
                         preserveModules: true,
+                        exports: 'named',
                         //配置打包根目录
                         dir: resolve(__dirname, './dist/lib'),
-                        preserveModulesRoot: resolve(__dirname, 'src')
+
                     }
                 ]
             },

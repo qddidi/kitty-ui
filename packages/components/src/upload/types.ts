@@ -2,12 +2,12 @@
 import { ExtractPropTypes } from 'vue'
 
 
-export const uoloadType = {
+export const uploadType = {
     multiple: Boolean,
     accept: String,
     drag: Boolean
 }
 
-export type LinkProps = ExtractPropTypes<typeof uoloadType>
+export type UploadType = ExtractPropTypes<typeof uploadType>
 
 

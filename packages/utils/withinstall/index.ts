@@ -1,5 +1,5 @@
 import type { App, Plugin } from "vue"
-type SFCWithInstall<T> = T & Plugin
+export type SFCWithInstall<T> = T & Plugin
 export default <T>(comp: T) => {
     (comp as SFCWithInstall<T>).install = (app: App) => {
         //注册组件

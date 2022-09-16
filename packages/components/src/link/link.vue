@@ -2,7 +2,7 @@
     <a v-bind="attrs" class="k-link" :class="styleClass">
         <slot />
     </a>
-</template>
+</template> 
 <script lang="ts">
 import './style/index.less'
 import { linkProps } from './types'
