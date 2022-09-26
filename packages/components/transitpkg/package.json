@@ -1,6 +1,6 @@
 {
   "name": "kitty-ui",
-  "version": "3.0.18",
+  "version": "4.0.2",
   "main": "lib/index.js",
   "module": "es/index.mjs",
   "files": [
@@ -14,6 +14,9 @@
   "dependencies": {
     "@kitty-ui/utils": "2.0.3"
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "author": "小月",
   "license": "MIT",
   "description": "",
