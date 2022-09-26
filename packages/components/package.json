@@ -20,6 +20,6 @@
   "description": "",
   "typings": "lib/index.d.ts",
   "dependencies": {
-    "@kitty-ui/utils": "workspace:2.0.1"
+    "@kitty-ui/utils": "workspace:2.0.3"
   }
 }
