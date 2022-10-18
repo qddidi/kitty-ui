@@ -21,7 +21,6 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { type } from 'os'
 export default defineComponent({
     name: 'k-upload'
 });
@@ -30,17 +29,17 @@ export default defineComponent({
 import './style/index.less'
 import { ref } from 'vue'
 import Icon from '../icon/icon.vue'
-import { uploadType } from './types'
+
 import Drager from './dragger.vue'
 export type Emits = {
     (e: 'getFilesList', value: File[]): void
 }
-
-const props = defineProps<{
-    multiple: boolean,
-    accept: string,
-    drag: boolean
-}>()
+type UploadType = {
+    multiple?: boolean,
+    accept?: string,
+    drag?: boolean,
+}
+const props = defineProps<UploadType>()
 const kIpt = ref()
 
 const emits = defineEmits<Emits>()

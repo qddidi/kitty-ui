@@ -1,11 +1,12 @@
 <template>
     <div class="upload-demo">
-        <k-upload @getFilesList="getFilesList" drag multiple accept="image/*"></k-upload>
-        <Button></Button>
+        <Upload @getFilesList="getFilesList" accept="" drag=""></Upload>
+        <Shake>123</Shake>
+
     </div>
 </template>
 <script lang="ts" setup>
-import { Button } from 'kitty-ui'
+import { Shake, Upload } from 'kitty-ui'
 const getFilesList = (files: File[]) => {
     console.log(files)
 }

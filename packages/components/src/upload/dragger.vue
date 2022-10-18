@@ -34,7 +34,7 @@ const onDragover = (e: Event) => {
   if (timer.value !== null) {
     clearTimeout(timer.value);
   }
-  timer.value = setTimeout(() => {
+  timer.value = window.setTimeout(() => {
     isEnter.value = false;
     timer.value = null;
   }, 100);
