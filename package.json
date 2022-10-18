@@ -14,7 +14,7 @@
     "docs:serve": "pnpm run --filter ./site docs:serve",
     "exm:dev": "pnpm run --filter ./examples dev",
     "test": "pnpm run --filter ./packages/components test",
-    "coverage": "pnpm run --filter ./packages/components vitest run --coverage"
+    "coverage": "pnpm run --filter ./packages/components coverage"
   },
   "devDependencies": {
     "@types/gulp": "^4.0.9",
