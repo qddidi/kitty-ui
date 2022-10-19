@@ -13,7 +13,7 @@ export default defineComponent({
 <script lang='ts' setup>
 
 type ShakeProps = {
-    trigger: boolean
+    trigger?: boolean
 }
 const props = defineProps<ShakeProps>()
 
