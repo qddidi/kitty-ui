@@ -1,5 +1,5 @@
 <template>
-    <div class="k-shake" :class="{['k-shakeactive']:props.trigger}">
+    <div class="k-shake" :class="{['k-shakeactive']:props.modelValue}">
         <slot />
     </div>
 </template>
@@ -11,11 +11,26 @@ export default defineComponent({
 });
 </script>
 <script lang='ts' setup>
-
+import { watch } from 'vue'
 type ShakeProps = {
-    trigger?: boolean
+    modelValue?: boolean
 }
-const props = defineProps<ShakeProps>()
+type Emits = {
+    (e: 'update:modelValue', value: boolean): void
+}
+const props = withDefaults(defineProps<ShakeProps>(), {
+    modelValue: false
+})
+
+const emits = defineEmits<Emits>()
+watch(() => props.modelValue, (newVal) => {
+    if (newVal) {
+        setTimeout(() => {
+            emits("update:modelValue", false)
+        }, 1000);
+    }
+
+}, { immediate: true })
 
 
 </script>
