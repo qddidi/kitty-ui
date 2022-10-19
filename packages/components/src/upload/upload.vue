@@ -19,21 +19,19 @@
         </div>
     </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-    name: 'k-upload'
-});
-</script>
+
 <script setup lang="ts">
 import './style/index.less'
 import { ref } from 'vue'
 import Icon from '../icon/icon.vue'
-
 import Drager from './dragger.vue'
+
 export type Emits = {
     (e: 'getFilesList', value: File[]): void
 }
+defineOptions({
+    name: 'k-upload',
+});
 type UploadType = {
     multiple?: boolean,
     accept?: string,

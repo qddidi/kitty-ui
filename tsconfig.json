@@ -8,6 +8,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "moduleResolution": "Node",
+    "types": ["unplugin-vue-define-options"],
     "lib": ["esnext", "dom"],
     "rootDirs": ["./", "./packages/components"],
     "paths": {

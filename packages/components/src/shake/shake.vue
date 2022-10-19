@@ -3,15 +3,11 @@
         <slot />
     </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-import './style/index.less'
-export default defineComponent({
-    name: 'k-shake'
-});
-</script>
 <script lang='ts' setup>
 import { watch } from 'vue'
+defineOptions({
+    name: 'k-shake'
+})
 type ShakeProps = {
     modelValue?: boolean
 }

@@ -9,6 +9,7 @@
         </Shake>
         <br>
         <Button style="width:230px" type="primary" @click="trigger=true" size="small">登录</Button>
+        <k-upload>111</k-upload>
     </div>
 </template>
 <script lang="ts" setup>

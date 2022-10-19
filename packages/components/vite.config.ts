@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue"
 import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
+import DefineOptions from 'unplugin-vue-define-options/vite';
 export default defineConfig(
     {
         build: {
@@ -50,6 +51,7 @@ export default defineConfig(
 
         plugins: [
             vue(),
+            DefineOptions(),
             dts({
                 entryRoot: 'src',
                 outputDir: [resolve(__dirname, './dist/es/src'), resolve(__dirname, './dist/lib/src')],
