@@ -3,7 +3,7 @@
 </h1>
 
 ![v](https://img.shields.io/npm/v/kitty-ui)
-![d](https://img.shields.io/npm/dw/kitty-ui)
+![d](https://img.shields.io/npm/dt/kitty-ui)
 
 
 
