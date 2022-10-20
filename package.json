@@ -5,7 +5,7 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "build:kitty": "gulp -f packages/components/script/build/gulpfile.ts",
     "publish:kitty": "gulp -f packages/components/script/publish/gulpfile.ts",

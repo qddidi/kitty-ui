@@ -2,7 +2,7 @@
     Kitty-UI
 </h1>
 
-![v](https://img.shields.io/github/license/smarty-team/smarty-admin?color=red)
+![v](https://img.shields.io/npm/v/kitty-ui)
 ![d](https://img.shields.io/npm/dw/kitty-ui)
 
 
