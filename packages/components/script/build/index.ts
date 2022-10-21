@@ -6,7 +6,7 @@ import delpath from "../utils/delpath"
 import run from '../utils/run'
 //删除dist
 export const removeDist = () => {
-    return delpath(`${componentPath}/dist`)
+    return delpath(`${componentPath}/kitty-ui`)
 }
 
 //处理样式
@@ -16,8 +16,8 @@ export const buildStyle = () => {
         .pipe(
             autoprefixer()
         )
-        .pipe(dest(`${componentPath}/dist/lib/src`))
-        .pipe(dest(`${componentPath}/dist/es/src`));
+        .pipe(dest(`${componentPath}/kitty-ui/lib/src`))
+        .pipe(dest(`${componentPath}/kitty-ui/es/src`));
 };
 
 //打包组件

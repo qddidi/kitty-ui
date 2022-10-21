@@ -1,0 +1,31 @@
+{
+  "name": "kitty-ui",
+  "version": "4.0.10",
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "release": "release-it"
+  },
+  "keywords": [
+    "kitty-ui",
+    "vue3组件库"
+  ],
+  "dependencies": {
+    "@kitty-ui/utils": "2.0.3"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geeksdidi/kittyui"
+  },
+  "author": "小月",
+  "license": "MIT",
+  "description": "",
+  "typings": "lib/index.d.ts"
+}
