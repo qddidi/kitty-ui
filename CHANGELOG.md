@@ -1,5 +1,12 @@
 
 
+## [4.7.0](https://github.com/geeksdidi/kittyui/compare/v4.5.0...v4.7.0) (2022-10-21)
+
+
+### Features
+
+* test ([ee2769f](https://github.com/geeksdidi/kittyui/commit/ee2769f3d08445f5daac32fb638ea488e377bea1))
+
 # [4.6.0](https://github.com/geeksdidi/kittyui/compare/v4.5.0...v4.6.0) (2022-10-21)
 
 
