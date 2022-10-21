@@ -2,11 +2,11 @@ import { src, dest } from 'gulp'
 import { componentPath } from '../utils/paths'
 import less from "gulp-less"
 import autoprefixer from 'gulp-autoprefixer'
-import run from "../utils/run"
-
+import delpath from "../utils/delpath"
+import run from '../utils/run'
 //删除dist
 export const removeDist = () => {
-    return run(`rm -rf ${componentPath}/dist`, componentPath)
+    return delpath(`${componentPath}/dist`)
 }
 
 //处理样式
