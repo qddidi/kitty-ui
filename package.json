@@ -14,8 +14,7 @@
     "docs:serve": "pnpm run --filter ./site docs:serve",
     "exm:dev": "pnpm run --filter ./examples dev",
     "test": "pnpm run --filter ./packages/components test",
-    "coverage": "pnpm run --filter ./packages/components coverage",
-    "release": "release-it"
+    "coverage": "pnpm run --filter ./packages/components coverage"
   },
   "type": "module",
   "devDependencies": {

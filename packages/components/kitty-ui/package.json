@@ -1,6 +1,6 @@
 {
   "name": "kitty-ui",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "main": "lib/index.js",
   "module": "es/index.mjs",
   "files": [
@@ -9,6 +9,10 @@
   ],
   "scripts": {
     "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geeksdidi/kittyui"
   },
   "keywords": [
     "kitty-ui",
@@ -20,10 +24,6 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/geeksdidi/kittyui"
-  },
   "author": "小月",
   "license": "MIT",
   "description": "",
