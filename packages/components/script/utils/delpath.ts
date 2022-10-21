@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { componentPath } from './paths'
-
+const stayFile = ['package.json', 'README.md']
 
 const delPath = async (path: string) => {
 
@@ -19,7 +19,7 @@ const delPath = async (path: string) => {
                 await delPath(curPath);
 
             } else { // delete file
-                if (file != 'package.json') {
+                if (!stayFile.includes(file)) {
                     fs.unlinkSync(curPath);
                 }
 
