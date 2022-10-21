@@ -1,5 +1,12 @@
 
 
+## [4.12.0](https://github.com/geeksdidi/kittyui/compare/v4.11.0...v4.12.0) (2022-10-21)
+
+
+### Features
+
+* add log ([9b3853a](https://github.com/geeksdidi/kittyui/commit/9b3853a926cbce9527d20b5d28c211d8b89d1caf))
+
 ## [4.10.0](https://github.com/geeksdidi/kittyui/compare/v4.5.0...v4.10.0) (2022-10-21)
 
 
