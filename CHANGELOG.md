@@ -1,5 +1,18 @@
 
 
+## [4.13.0](https://github.com/geeksdidi/kittyui/compare/v4.11.0...v4.13.0) (2022-10-23)
+
+
+### Features
+
+* add log ([a506df1](https://github.com/geeksdidi/kittyui/commit/a506df18708636b34aec63ebe63ad9c02846f9ff))
+* add log ([9b3853a](https://github.com/geeksdidi/kittyui/commit/9b3853a926cbce9527d20b5d28c211d8b89d1caf))
+
+
+### Bug Fixes
+
+* add patch test ([0ccbde8](https://github.com/geeksdidi/kittyui/commit/0ccbde8f1eb55c643b848367f4c488d266616d90))
+
 ## [4.12.0](https://github.com/geeksdidi/kittyui/compare/v4.11.0...v4.12.0) (2022-10-21)
 
 
