@@ -1,9 +1,11 @@
 <!-- button.vue -->
 <template>
     <button class="k-button" :class="styleClass">
-        <Icon class="icon" v-if="iconFont.iconName && iconFont.position != 'right'" :name="iconFont.iconName" />
-        <slot />
-        <Icon class="icon" v-if="iconFont.position == 'right' && iconFont.iconName" :name="iconFont.iconName" />
+        <Icon v-if="iconFont.iconName && iconFont.position != 'right'" :name="iconFont.iconName" />
+        <div class="k-button-text">
+            <slot />
+        </div>
+        <Icon v-if="iconFont.position == 'right' && iconFont.iconName" :name="iconFont.iconName" />
     </button>
 </template>
 
@@ -11,7 +13,7 @@
 import './style/index.less'
 import { defineComponent, computed } from 'vue'
 import { buttonProps } from './types'
-import Icon from '../Icon/icon.vue'
+import Icon from '../icon/icon.vue'
 export default defineComponent({
     name: 'k-button',
     props: buttonProps,

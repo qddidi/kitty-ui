@@ -1,10 +1,8 @@
-import { withInstall } from '@kitty-ui/utils';
-import * as components from './src/index'
+import components from './src/index'
 export * from './src/index'
+import { App } from 'vue'
 export default {
-    install: () => {
-        for (const comkey in components) {
-            withInstall((components as any)[comkey])
-        }
+    install: (app: App) => {
+        components.forEach(c => app.use(c));
     }
 }

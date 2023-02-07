@@ -1,4 +1,6 @@
-.k-button {
+@import '../../../common/index.less';
+
+.@{prefix}-button {
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
@@ -16,7 +18,9 @@
   padding: 12px 20px;
   font-size: 14px;
   border-radius: 4px;
-  .icon {
+
+  .k-button-text {
+    display: inline-block;
     margin: 0 4px;
   }
 
@@ -26,6 +30,7 @@
     background-color: #ecf5ff;
   }
 }
+
 .k-button.is-disabled {
   color: #c0c4cc;
   cursor: not-allowed;
@@ -33,26 +38,31 @@
   background-color: #fff;
   border-color: #ebeef5;
 }
+
 .k-button--primary {
   color: #fff;
   background-color: #409eff;
   border-color: #409eff;
+
   &:hover {
     background: #66b1ff;
     border-color: #66b1ff;
     color: #fff;
   }
 }
+
 .k-button--primary.is-plain {
   color: #409eff;
   background: #ecf5ff;
   border-color: #b3d8ff;
+
   &:hover {
     color: #fff;
     background-color: #409eff;
     border-color: #409eff;
   }
 }
+
 .k-button--primary.is-disabled,
 .k-button--primary.is-disabled:active,
 .k-button--primary.is-disabled:focus,
@@ -61,6 +71,7 @@
   background-color: #a0cfff;
   border-color: #a0cfff;
 }
+
 //朴素按钮禁用
 .k-button--primary.is-disabled.is-plain,
 .k-button--primary.is-disabled.is-plain:active,
@@ -70,38 +81,45 @@
   background-color: #ecf5ff;
   border-color: #d9ecff;
 }
+
 .k-button--text {
   border-color: transparent;
   color: #409eff;
   background: transparent;
   padding-left: 0;
   padding-right: 0;
+
   &:hover {
     color: #66b1ff;
     border-color: transparent;
     background-color: transparent;
   }
 }
+
 .k-button--success {
   color: #fff;
   background-color: #67c23a;
   border-color: #67c23a;
+
   &:hover {
     background: #85ce61;
     border-color: #85ce61;
     color: #fff;
   }
 }
+
 .k-button--success.is-plain {
   color: #67c23a;
   background: #f0f9eb;
   border-color: #c2e7b0;
+
   &:hover {
     color: #fff;
     background-color: #67c23a;
     border-color: #67c23a;
   }
 }
+
 .k-button--success.is-disabled,
 .k-button--success.is-disabled:active,
 .k-button--success.is-disabled:focus,
@@ -110,6 +128,7 @@
   background-color: #b3e19d;
   border-color: #b3e19d;
 }
+
 //朴素按钮禁用
 .k-button--success.is-disabled.is-plain,
 .k-button--success.is-disabled.is-plain:active,
@@ -119,20 +138,24 @@
   background-color: #f0f9eb;
   border-color: #e1f3d8;
 }
+
 .k-button--info {
   color: #fff;
   background-color: #909399;
   border-color: #909399;
+
   &:hover {
     background: #a6a9ad;
     border-color: #a6a9ad;
     color: #fff;
   }
 }
+
 .k-button--info.is-plain {
   color: #909399;
   background-color: #f4f4f5;
   border-color: #d3d4d6;
+
   &:hover {
     color: #fff;
     background-color: #909399;
@@ -149,6 +172,7 @@
   border-color: #c8c9cc;
   cursor: not-allowed;
 }
+
 //朴素按钮禁用
 .k-button--info.is-disabled.is-plain,
 .k-button--info.is-disabled.is-plain:active,
@@ -158,26 +182,31 @@
   background-color: #f4f4f5;
   border-color: #e9e9eb;
 }
+
 .k-button--warning {
   color: #fff;
   background-color: #e6a23c;
   border-color: #e6a23c;
+
   &:hover {
     background: #ebb563;
     border-color: #ebb563;
     color: #fff;
   }
 }
+
 .k-button--warning.is-plain {
   color: #e6a23c;
   background: #ecf5ff;
   border-color: #b3d8ff;
+
   &:hover {
     color: #fff;
     background-color: #e6a23c;
     border-color: #e6a23c;
   }
 }
+
 .k-button--warning.is-disabled,
 .k-button--warning.is-disabled:active,
 .k-button--warning.is-disabled:focus,
@@ -186,6 +215,7 @@
   background-color: #f3d19e;
   border-color: #f3d19e;
 }
+
 //朴素按钮禁用
 .k-button--warning.is-disabled.is-plain,
 .k-button--warning.is-disabled.is-plain:active,
@@ -195,26 +225,31 @@
   background-color: #fdf6ec;
   border-color: #faecd8;
 }
+
 .k-button--danger {
   color: #fff;
   background-color: #f56c6c;
   border-color: #f56c6c;
+
   &:hover {
     background: #f78989;
     border-color: #f78989;
     color: #fff;
   }
 }
+
 .k-button--warning.is-plain {
   color: #f56c6c;
   background: #fef0f0;
   border-color: #fbc4c4;
+
   &:hover {
     color: #fff;
     background-color: #f56c6c;
     border-color: #f56c6c;
   }
 }
+
 .k-button--danger.is-disabled,
 .k-button--danger.is-disabled:active,
 .k-button--danger.is-disabled:focus,
@@ -223,6 +258,7 @@
   background-color: #fab6b6;
   border-color: #fab6b6;
 }
+
 .k-button--danger.is-disabled.is-plain,
 .k-button--danger.is-disabled.is-plain:active,
 .k-button--danger.is-disabled.is-plain:focus,
